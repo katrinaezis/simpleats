@@ -86,8 +86,10 @@ var SEModule = angular.module('se', ['ngRoute',
             $scope.orders.push(generate_order());
 
         $scope.get_minutes = function(order) {
-            console.log(order.time_due, get_difference(order.time_due));
             return get_difference(order.time_due); };
+
+        $scope.get_minutes_start = function(order) {
+            return get_difference(start_time(order)); };
 
         $scope.get_percent = function(order) {
             return get_percent(order.time_due); };
