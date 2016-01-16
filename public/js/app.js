@@ -62,25 +62,37 @@ var SEModule = angular.module('se', ['ngRoute',
 
     .controller('DashboardController', function($scope, Socket) {
         var connection = Socket.connect(function(x) { console.log('connected', x); });
-        var count      = Math.floor(Math.random() * 15) + 10;
+        var count      = Math.floor(Math.random() * 8) + 5;
 
-        $scope.orders = [];
+        $scope.orders  = [];
         
+        function get_tickets() {
+            return $scope.orders.map(function(order) {
+                return order.tickets.map(function(ticket) {
+                    ticket.time_due = order.time_due;
+                    ticket.order    = order;
+                    return ticket; }); })
+                .reduce(function(a, b) {
+                    return a.concat(b); }); }
+
         function add_order(order) {
             $scope.$apply(function() {
-                $scope.orders.push(order); }); }
+                $scope.orders.push(order);
+                $scope.tickets = get_tickets();}); }
         
         connection.on('new_order', function(order) {
             add_order(order); });
 
         for (;count>0;count--)
-            add_order(generate_order());
+            $scope.orders.push(generate_order());
+        $scope.tickets = get_tickets();
+        console.log($scope.tickets);
     })
 
     .controller('OrderController', function($scope, Socket) {
+        $scope.menu_items = menu_items;
         console.log(Socket);
         var connection = Socket.connect();
-
         $scope.make_order = function() {
             var order = generate_order();
             console.log(order);
@@ -90,6 +102,7 @@ var SEModule = angular.module('se', ['ngRoute',
 
     .controller('HomeController', function($scope) {
         $scope.test = 123;
+
     });
 
 

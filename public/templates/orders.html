@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <nav>
 	<div class="nav-wrapper teal darken-2">
 		<a href="#" class="brand-logo center"><img id="logo" src="images/simpl-logo.png"></a>
@@ -9,14 +8,17 @@
 		</ul>
 	</div>
 </nav>
-{{orders}}
-=======
-<div ng-repeat="order in orders">
-  <h1> an order</h1>
-  {{order.time_due}}
-  <div ng-repeat="ticket in order.tickets">
-    {{ticket.item.title}}
-  </div>
-</div>
 
->>>>>>> 4389677ec69137d17e661174ef99de8f8431832b
+<h1>Pending Orders</h1>
+
+<ul class="items orders">
+	<li class="item" ng-repeat="order in orders" ng-init="menuitem = order">
+	  <img class="itemImage" src="/images/food/{{menuitem.thumbnail}}"/>
+	  <div class="itemDetails">
+		  <h2 class="itemTitle">{{menuitem.title}}</h2>
+		  <!-- <div class="itemType">{{menuitem.type}}</div> -->
+		  <!-- <div class="itemDescription">{{menuitem.description}}</div> -->
+		  <!-- <div class="itemPrice">${{menuitem.price.toFixed(2)}}</div> -->
+	  </div>
+	</li>
+</ul>
