@@ -62,13 +62,19 @@ var SEModule = angular.module('se', ['ngRoute',
 
     .controller('DashboardController', function($scope, Socket) {
         var connection = Socket.connect(function(x) { console.log('connected', x); });
+        var count      = Math.floor(Math.random() * 15) + 10;
 
         $scope.orders = [];
+        
         function add_order(order) {
             $scope.$apply(function() {
                 $scope.orders.push(order); }); }
+        
         connection.on('new_order', function(order) {
             add_order(order); });
+
+        for (;count>0;count--)
+            add_order(generate_order());
     })
 
     .controller('OrderController', function($scope, Socket) {
@@ -76,11 +82,7 @@ var SEModule = angular.module('se', ['ngRoute',
         var connection = Socket.connect();
 
         $scope.make_order = function() {
-            var order = {tickets: [{item: menu_items[0],
-                                    options: {'with swiss': true}},
-                                   {item: menu_items[2],
-                                    options: {}}],
-                         time_due:   new Date(new Date() - 1 + 1000 * 60 * 28)};
+            var order = generate_order();
             console.log(order);
             connection.emit('new_order', order); };
         

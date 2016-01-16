@@ -45,8 +45,13 @@ function generate_ticket() {
     
     return {item: item,
             options: options}; }
-/*
+
 function generate_order() {
-    var length = 
-                               {item: menu_items[2],
-                                options: {}}],*/
+    var length = Math.ceil(Math.random() * 4);
+    var order  = {tickets:    [],
+                  time_due:  new Date(new Date() - 1 + 1000 * 60 * (Math.random() * 60 - 30))};
+    
+    for (var i = 0; i <= length; i++) 
+        order.tickets.push(generate_ticket());
+
+    return order; }
