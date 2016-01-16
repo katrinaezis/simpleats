@@ -1,0 +1,21 @@
+{
+  "name": "Simpleats",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "author": "",
+  "scripts": {
+    "start": "node main.js",
+    "postinstall": "bower install"
+  },
+  "dependencies": {
+    "express": "*",
+    "bower": "*",
+    "errorhandler": "*",
+    "body-parser": "*",
+    "cookie-parser": "*",
+    "method-override": "*",
+    "express-session": "*",
+    "request": "~2.67.0"
+  }
+}
