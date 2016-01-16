@@ -69,7 +69,7 @@ var SEModule = angular.module('se', ['ngRoute',
         function get_tickets() {
             return $scope.orders.map(function(order) {
                 return order.tickets.map(function(ticket) {
-                    ticket.time_due = order.time_due;
+                    ticket.time_due = new Date(order.time_due);
                     ticket.order    = order;
                     return ticket; }); })
                 .reduce(function(a, b) {
@@ -86,6 +86,14 @@ var SEModule = angular.module('se', ['ngRoute',
         for (;count>0;count--)
             $scope.orders.push(generate_order());
         $scope.tickets = get_tickets();
+
+        $scope.get_minutes = function(ticket) {
+            console.log(ticket.time_due, get_difference(ticket.time_due));
+            return get_difference(ticket.time_due); };
+
+        $scope.get_percent = function(ticket) {
+            return get_percent(ticket.time_due); };
+
         console.log($scope.tickets);
     })
 

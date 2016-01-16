@@ -8,13 +8,6 @@
 		</ul>
 	</div>
 </nav>
-<div ng-repeat="order in orders">
-  <h1> an order</h1>
-  {{order.time_due}}
-  <div ng-repeat="ticket in order.tickets">
-    {{ticket.item.title}}
-  </div>
-</div>
 
 <h1>Pending Orders</h1>
 
@@ -27,6 +20,6 @@
 		  <!-- <div class="itemDescription">{{menuitem.description}}</div> -->
 		  <!-- <div class="itemPrice">${{menuitem.price.toFixed(2)}}</div> -->
 	  </div>
-          {{order.time_due}}
+          {{get_minutes(ticket)}}m
 	</li>
 </ul>

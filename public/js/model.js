@@ -62,3 +62,11 @@ function generate_order() {
 
     return order; }
 
+function get_difference(time) {
+    var diff = time - new Date();
+    return moment.duration(diff).minutes(); }
+
+function get_percent(time) {
+    var diff = time - new Date();
+    if (diff < 0) return 0;
+    return diff / (1000 * 60 * 30); }
