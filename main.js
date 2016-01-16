@@ -20,8 +20,9 @@ server.listen(port);
 
 
 io.on('connection', function (socket) {
-  socket.on('new_order', function (data) {
-      socket.emit('new_order', data);
+    socket.on('new_order', function (data) {
+        console.log(data, 'new_order');
+      socket.broadcast.emit('new_order', data);
   });
 });
 

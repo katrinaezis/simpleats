@@ -1,2 +1,8 @@
+<div ng-repeat="order in orders">
+  <h1> an order</h1>
+  {{order.time_due}}
+  <div ng-repeat="ticket in order.tickets">
+    {{ticket.item.title}}
+  </div>
+</div>
 
-{{orders}}
