@@ -55,9 +55,9 @@ function generate_ticket() {
 function generate_order() {
     var length = Math.ceil(Math.random() * 4);
     var order  = {tickets:    [],
-                  time_due:  new Date(new Date() - 1 + 1000 * 60 * (Math.random() * 60 - 30))};
+                  time_due:  new Date(new Date() - 1 + 1000 * 60 * (Math.random() * 60 - 4))};
     
-    for (var i = 0; i <= length; i++) 
+    for (var i = 0; i < length; i++) 
         order.tickets.push(generate_ticket());
 
     return order; }

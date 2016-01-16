@@ -12,14 +12,25 @@
 <h1>Pending Orders</h1>
 
 <ul class="items orders">
-  <li class="item" ng-repeat="ticket in tickets" ng-init="menuitem = ticket.item">
-    	  <img class="itemImage" src="/images/food/{{menuitem.thumbnail}}"/>
-	  <div class="itemDetails">
-		  <h2 class="itemTitle">{{menuitem.title}}</h2>
-		  <!-- <div class="itemType">{{menuitem.type}}</div> -->
-		  <!-- <div class="itemDescription">{{menuitem.description}}</div> -->
-		  <!-- <div class="itemPrice">${{menuitem.price.toFixed(2)}}</div> -->
-	  </div>
-          {{get_minutes(ticket)}}m
-	</li>
+  <li class="item" ng-repeat="order in orders">
+    <div class="order-head">
+      <span class="start">
+        start in {{get_minutes(order)}}m
+      </span>
+      <span class="due">
+        due in {{get_minutes(order)}}m
+      </span>
+    </div>
+    <div class="items">
+      <div class="item" ng-repeat="item in order.tickets" ng-init="menuitem = item.item">
+        <img class="itemImage" src="/images/food/{{menuitem.thumbnail}}"/>
+        <div class="itemDetails">
+	  <h2 class="itemTitle">{{menuitem.title}}</h2>
+	  <!-- <div class="itemType">{{menuitem.type}}</div> -->
+	  <!-- <div class="itemDescription">{{menuitem.description}}</div> -->
+	  <!-- <div class="itemPrice">${{menuitem.price.toFixed(2)}}</div> -->
+        </div>
+      </div>
+    </div>
+  </li>
 </ul>
