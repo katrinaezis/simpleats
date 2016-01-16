@@ -1,9 +1,17 @@
+
 Pick from our amazing selection of items:
+
 <ul class="items">
 	<li class="item" ng-repeat="menuitem in menu_items">
 	  <img class="itemImage" src="/images/food/{{menuitem.thumbnail}}"/>
 	  <div class="itemDetails">
-		  <h2 class="itemTitle">{{menuitem.title}}</h2>
+	      <div class="itemHeader">
+			  <div class="itemTitle">{{menuitem.title}}</div>
+			  <div class="addToOrderButton"> 
+					<button class="mainBtn" ng-click="add_to_order(menuitem)">Add To Order</button><br/>
+					<span>Quantity: {{ orderItemQuantity(menuitem.title) }}</span>
+			  </div>
+		  </div>
 		  <!-- <div class="itemType">{{menuitem.type}}</div> -->
 		  <div class="itemDescription">{{menuitem.description}}</div>
 		  <div class="itemPrice">${{menuitem.price.toFixed(2)}}</div>
@@ -12,5 +20,6 @@ Pick from our amazing selection of items:
 </ul>
 
 <div class="checkoutButtons">
+    <div>Total items: {{ order_in.menuItems.length }}</div>
 	<button class="mainBtn" ng-click="make_order()">Checkout</button>
 </div>
