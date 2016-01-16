@@ -13,6 +13,7 @@
     "angular-route": "~1.4.8",
     "toastr": "~2.1.2",
     "angular-ui-utils": "~3.0.0",
-    "jquery-ui": "~1.11.4"
+    "jquery-ui": "~1.11.4",
+    "angular-socket-io": "~0.7.0"
   }
 }

@@ -13,9 +13,18 @@ var port            = process.env.PORT || 8080;
 var names           = [];
 var courses         = [];
 var assignments     = [];
+var server          = require('http').Server(app);
+var io              = require('socket.io')(server);
+
+server.listen(port);
 
 
-app.listen(port);
+io.on('connection', function (socket) {
+  socket.on('new_order', function (data) {
+      socket.emit('new_order', data);
+  });
+});
+
 
 function curry(that) {
     var args = to_array(arguments).slice(1);
