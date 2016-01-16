@@ -33,3 +33,20 @@ var menu_items =
                          price:  [3, 0],
                          type:   'boolean'}],
           price:         [9, 0]}];
+
+
+function generate_ticket() {
+    var item      = menu_items[Math.floor(Math.random() * menu_items.length)];
+    var options   = {};
+
+    item.options.map(function(option) {
+        if (Math.rand() > 0.6)
+            options[option.name] = true; });
+    
+    return {item: item,
+            options: options}; }
+/*
+function generate_order() {
+    var length = 
+                               {item: menu_items[2],
+                                options: {}}],*/
