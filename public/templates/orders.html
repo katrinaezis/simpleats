@@ -1,13 +1,51 @@
 <nav>
 	<div class="nav-wrapper teal darken-2">
 		<a href="#" class="brand-logo center"><img id="logo" src="images/simpl-logo.png"></a>
-		<ul id="nav-mobile" class="left hide-on-med-and-down">
+		<!-- <ul id="nav-mobile" class="left hide-on-med-and-down">
 			<li><a href="sass.html">Sass</a></li>
 			<li><a href="badges.html">Components</a></li>
 			<li><a href="collapsible.html">JavaScript</a></li>
-		</ul>
+		</ul> -->
 	</div>
 </nav>
+<div id ="orderList" class="container">
+	<div ng-repeat="order in orders" id="fullOrder" class="row">
+		<div id="innerContent" class="section col s12">
+			<div id="titleTimer">
+				<div class="row container">
+					<div class="col s6">Table {{number}}</div>
+					<div id="timer" class="col s6">{{timer}} words</div>
+				</div>
+			</div>
+			<div id="orderItems">
+				<ul>
+					<li ng-repeat="items in order">
+						<div class="col s3 center-align">{{order.title}}</div>
+						<div class="col s9">{{specs}} potato</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="orderList" class="container">
+	<div id="orderRow" class="row">
+		<div ng-repeat="order in orders" class="col s12 section">
+			<div id="innerContent" class="row">
+				<div class="col s6">{{order.title}}</div>
+				<div class="col s6">{{order.time_due}} some time</div>
+			</div>
+		</div>
+		<div class="divider"></div>
+	</div>
+</div>
+<!-- <div ng-repeat="order in orders">
+  <h1> an order</h1>
+  {{order.time_due}}
+  <div ng-repeat="ticket in order.tickets">
+    {{ticket.item.title}}
+  </div>
+</div> -->
 
 <h1>Pending Orders</h1>
 
