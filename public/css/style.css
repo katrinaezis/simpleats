@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+#logo {
+	height: 60px;
+}
+
 body {
 	color: #675d53;
 	font-family: Arial,Helvetica,sans-serif;

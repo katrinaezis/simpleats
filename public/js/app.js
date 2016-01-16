@@ -6,9 +6,9 @@ var SEModule = angular.module('se', ['ngRoute',
 	function r(path, template, controller) {
 	    $routeProvider
 		.when(path, {
-		    templateUrl: template,
-		    controller: controller}); }
-        console.log('x');
+		    templateUrl:  template,
+		    controller:   controller}); }
+
 	r('/', 'templates/homepage.html', 'HomeController');
 	r('/order', 'templates/make_order.html', 'OrderController');
 	r('/dashboard', 'templates/orders.html', 'DashboardController');
@@ -61,20 +61,28 @@ var SEModule = angular.module('se', ['ngRoute',
     })
 
     .controller('DashboardController', function($scope, Socket) {
+        var connection = Socket.connect(function(x) { console.log('connected', x); });
+
         $scope.orders = menu_items;
-        Socket.on('new_order', function(order) {
-            $scope.orders.push(order); });        
+        function add_order(order) {
+            $scope.$apply(function() {
+                $scope.orders.push(order); }); }
+        connection.on('new_order', function(order) {
+            add_order(order); });
     })
 
     .controller('OrderController', function($scope, Socket) {
         $scope.menu_items = menu_items;
+        console.log(Socket);
+        var connection = Socket.connect();
         $scope.make_order = function() {
-            var order = {tickets: [{item: models[0],
+            var order = {tickets: [{item: menu_items[0],
                                     options: {'with swiss': true}},
-                                   {item: models[2],
+                                   {item: menu_items[2],
                                     options: {}}],
                          time_due:   new Date(new Date() - 1 + 1000 * 60 * 28)};
-            Socket.emit('new_order', order); };
+            console.log(order);
+            connection.emit('new_order', order); };
         
     })
 
