@@ -62,13 +62,36 @@ var SEModule = angular.module('se', ['ngRoute',
 
     .controller('DashboardController', function($scope, Socket) {
         var connection = Socket.connect(function(x) { console.log('connected', x); });
+        var count      = Math.floor(Math.random() * 8) + 5;
 
-        $scope.orders = menu_items;
+        $scope.orders  = [];
+        
+        function get_tickets() {
+            return $scope.orders.map(function(order) {
+                return order.tickets.map(function(ticket) {
+                    ticket.time_due = new Date(order.time_due);
+                    ticket.order    = order;
+                    return ticket; }); })
+                .reduce(function(a, b) {
+                    return a.concat(b); }); }
+
         function add_order(order) {
             $scope.$apply(function() {
                 $scope.orders.push(order); }); }
+        
         connection.on('new_order', function(order) {
             add_order(order); });
+
+        for (;count>0;count--)
+            $scope.orders.push(generate_order());
+
+        $scope.get_minutes = function(order) {
+            console.log(order.time_due, get_difference(order.time_due));
+            return get_difference(order.time_due); };
+
+        $scope.get_percent = function(order) {
+            return get_percent(order.time_due); };
+
     })
 
     .controller('OrderController', function($scope, Socket) {
@@ -76,11 +99,7 @@ var SEModule = angular.module('se', ['ngRoute',
         console.log(Socket);
         var connection = Socket.connect();
         $scope.make_order = function() {
-            var order = {tickets: [{item: menu_items[0],
-                                    options: {'with swiss': true}},
-                                   {item: menu_items[2],
-                                    options: {}}],
-                         time_due:   new Date(new Date() - 1 + 1000 * 60 * 28)};
+            var order = generate_order();
             console.log(order);
             connection.emit('new_order', order); };
         

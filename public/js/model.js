@@ -39,3 +39,34 @@ var menu_items =
           price:         9,
           thumbnail:	'PF-CHANGS-HONG-KONG-STYLE-SEA-BASS-sm.jpg'
           }];
+
+
+function generate_ticket() {
+    var item      = menu_items[Math.floor(Math.random() * menu_items.length)];
+    var options   = {};
+
+    (item.options || []).map(function(option) {
+        if (Math.random() > 0.6)
+            options[option.name] = true; });
+    
+    return {item: item,
+            options: options}; }
+
+function generate_order() {
+    var length = Math.ceil(Math.random() * 4);
+    var order  = {tickets:    [],
+                  time_due:  new Date(new Date() - 1 + 1000 * 60 * (Math.random() * 60 - 4))};
+    
+    for (var i = 0; i < length; i++) 
+        order.tickets.push(generate_ticket());
+
+    return order; }
+
+function get_difference(time) {
+    var diff = time - new Date();
+    return moment.duration(diff).minutes(); }
+
+function get_percent(time) {
+    var diff = time - new Date();
+    if (diff < 0) return 0;
+    return diff / (1000 * 60 * 30); }
