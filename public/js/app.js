@@ -1,9 +1,5 @@
 
-var SEModule = angular.module('bc', ['ngRoute'],)
-    .run(function ($rootScope, $location, BCApi) {
-        $rootScope.$on('$locationChangeSuccess', function () {
-            BCApi.get('/track_event', 
-                      {location: $location.path()}); }); })
+var SEModule = angular.module('se', ['ngRoute'])
 
     .config(function($routeProvider) {
 	function r(path, template, controller) {
@@ -11,7 +7,7 @@ var SEModule = angular.module('bc', ['ngRoute'],)
 		.when(path, {
 		    templateUrl: template,
 		    controller: controller}); }
-
+        console.log('x');
 	r('/', 'templates/homepage.html', 'HomeController');
         
 	$routeProvider
@@ -55,5 +51,9 @@ var SEModule = angular.module('bc', ['ngRoute'],)
 		request('post', path, data)
 		    .success(success || function() {})
 		    .error(failure || function() {}) }}; 
+    })
+
+    .controller('HomeController', function($scope) {
+        $scope.test = 123;
     });
 
