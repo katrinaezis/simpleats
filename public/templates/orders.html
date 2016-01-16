@@ -11,24 +11,18 @@
 <div id ="orderList" class="container">
 	<div ng-repeat="order in orders" id="fullOrder" class="row">
 		<div id="innerContent" class="section col s12">
-			<div id="titleTimer">
-				<div class="row container">
-					<div class="col s6">Table {{number}}</div>
-					<div id="timer" class="col s6">{{timer}} words</div>
-				</div>
+			<div id="titleTimer" class="row container">
+				<div class="col s6">Table {{number}}</div>
+				<div id="timer" class="col s6 left-align">{{order.time_due}}</div>
 			</div>
-			<div id="orderItems">
-				<ul>
-					<li ng-repeat="items in order">
-						<div class="col s3 center-align">{{order.title}}</div>
-						<div class="col s9">{{specs}} potato</div>
-					</li>
-				</ul>
+			<div id="orderItems" class="row container" ng-repeat="items in order">
+				<div class="col s9 push-s3">{{specs}} potato</div>
+				<div class="col s3 pull-s9 right-align">{{order.title}} food name</div>
 			</div>
 		</div>
 	</div>
 </div>
-<div id="orderList" class="container">
+<!-- <div id="orderList" class="container">
 	<div id="orderRow" class="row">
 		<div ng-repeat="order in orders" class="col s12 section">
 			<div id="innerContent" class="row">
@@ -38,7 +32,7 @@
 		</div>
 		<div class="divider"></div>
 	</div>
-</div>
+</div> -->
 <!-- <div ng-repeat="order in orders">
   <h1> an order</h1>
   {{order.time_due}}
@@ -47,9 +41,9 @@
   </div>
 </div> -->
 
-<h1>Pending Orders</h1>
+<!-- <h1>Pending Orders</h1> -->
 
-<ul class="items orders">
+<!-- <ul class="items orders">
   <li class="item" ng-repeat="order in orders">
     <div class="order-head">
       <span class="start">
@@ -63,12 +57,12 @@
       <div class="item" ng-repeat="item in order.tickets" ng-init="menuitem = item.item">
         <img class="itemImage" src="/images/food/{{menuitem.thumbnail}}"/>
         <div class="itemDetails">
-	  <h2 class="itemTitle">{{menuitem.title}}</h2>
+	  <h2 class="itemTitle">{{menuitem.title}}</h2>-->
 	  <!-- <div class="itemType">{{menuitem.type}}</div> -->
 	  <!-- <div class="itemDescription">{{menuitem.description}}</div> -->
 	  <!-- <div class="itemPrice">${{menuitem.price.toFixed(2)}}</div> -->
-        </div>
+       <!--  </div>
       </div>
-    </div>
-  </li>
-</ul>
+ -->    <!-- </div> -->
+<!--   </li>
+</ul> --> 

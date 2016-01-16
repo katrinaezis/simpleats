@@ -7,7 +7,11 @@
 #titleTimer {
 	font-size: 20pt;
 	padding: 2%;
+}
 
+#innerContent, #orderItems, #titleTimer {
+	display: block;
+	margin: auto;
 }
 
 #logo {
