@@ -77,24 +77,23 @@ var SEModule = angular.module('se', ['ngRoute',
 
         function add_order(order) {
             $scope.$apply(function() {
-                $scope.orders.push(order);
-                $scope.tickets = get_tickets();}); }
+                $scope.orders.push(order); }); }
         
         connection.on('new_order', function(order) {
             add_order(order); });
 
         for (;count>0;count--)
             $scope.orders.push(generate_order());
-        $scope.tickets = get_tickets();
 
-        $scope.get_minutes = function(ticket) {
-            console.log(ticket.time_due, get_difference(ticket.time_due));
-            return get_difference(ticket.time_due); };
+        $scope.get_minutes = function(order) {
+            return get_difference(order.time_due); };
 
-        $scope.get_percent = function(ticket) {
-            return get_percent(ticket.time_due); };
+        $scope.get_minutes_start = function(order) {
+            return get_difference(start_time(order)); };
 
-        console.log($scope.tickets);
+        $scope.get_percent = function(order) {
+            return get_percent(order.time_due); };
+
     })
 
     .controller('OrderController', function($scope, Socket) {
