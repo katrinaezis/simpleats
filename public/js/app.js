@@ -86,8 +86,10 @@ var SEModule = angular.module('se', ['ngRoute',
             $scope.orders.push(generate_order());
 
         $scope.get_minutes = function(order) {
-            console.log(order.time_due, get_difference(order.time_due));
             return get_difference(order.time_due); };
+
+        $scope.get_minutes_start = function(order) {
+            return get_difference(start_time(order)); };
 
         $scope.get_percent = function(order) {
             return get_percent(order.time_due); };
@@ -96,13 +98,28 @@ var SEModule = angular.module('se', ['ngRoute',
 
     .controller('OrderController', function($scope, Socket) {
         $scope.menu_items = menu_items;
+        $scope.order_in = { menuItems: [] };
         console.log(Socket);
         var connection = Socket.connect();
+        $scope.add_to_order = function(menuItem) {
+            $scope.order_in.menuItems.push(menuItem);
+            console.log('added menu item to order: ' + menuItem);
+        };
         $scope.make_order = function() {
             var order = generate_order();
             console.log(order);
-            connection.emit('new_order', order); };
-        
+            connection.emit('new_order', $scope.order_in); 
+        };
+        $scope.orderItemQuantity = function(menuItemTitle) {
+        	var q = 0;
+        	var menuItems = $scope.order_in.menuItems;
+        	for (var i = 0; i < menuItems.length; i++) {
+        		if (menuItems[i].title == menuItemTitle) {
+        			q++;
+        		}
+        	}
+        	return q;
+        }
     })
 
     .controller('HomeController', function($scope) {
