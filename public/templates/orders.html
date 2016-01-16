@@ -15,3 +15,17 @@
     {{ticket.item.title}}
   </div>
 </div>
+
+<h1>Pending Orders</h1>
+
+<ul class="items orders">
+	<li class="item" ng-repeat="order in orders" ng-init="menuitem = order">
+	  <img class="itemImage" src="/images/food/{{menuitem.thumbnail}}"/>
+	  <div class="itemDetails">
+		  <h2 class="itemTitle">{{menuitem.title}}</h2>
+		  <!-- <div class="itemType">{{menuitem.type}}</div> -->
+		  <!-- <div class="itemDescription">{{menuitem.description}}</div> -->
+		  <!-- <div class="itemPrice">${{menuitem.price.toFixed(2)}}</div> -->
+	  </div>
+	</li>
+</ul>
