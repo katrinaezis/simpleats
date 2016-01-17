@@ -66,8 +66,7 @@ body {
 }
 
 .items {
-	width: 100%;
-	max-width: 800px;	
+	width: 100%;	
 	list-style: none;
 	padding-left: 0px;
 }
@@ -125,6 +124,10 @@ body {
 	color: #ab262f;	
 }
 
+.itemQuantity {
+	
+}
+
 .itemPrice {
 	float: right;
     color: #ab262f;
@@ -162,4 +165,15 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+@media screen and (max-width: 550px) {
+	
+	.addToOrderButton button span{
+		display: none;
+	}
+	.addToOrderButton button:after{
+		content: 'Add';
+	}
+	
 }
