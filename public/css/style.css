@@ -120,3 +120,14 @@ body {
     -ms-user-select: none;
     user-select: none;
 }
+
+@media screen and (max-width: 550px) {
+	
+	.addToOrderButton button span{
+		display: none;
+	}
+	.addToOrderButton button:after{
+		content: 'Add';
+	}
+	
+}
