@@ -319,11 +319,28 @@ var SEModule = angular.module('se', ['ngRoute',
         .controller('DemoController', function($scope) {
             })
     .controller('HomeController', function($scope, Order) {
-
+    	var freewallContent;
+    	
         $scope.update_stuff = function() {
             Order.set_num_people($scope.num_people);
             Order.set_time($scope.time_due);
             console.log(Order.get_time(), Order.get_num_people());
+            
+            
+            $("#freewall").html(freewallContent);
+            $(".busy").remove();
+            var wall = new Freewall("#freewall");
+    		wall.reset({
+    			selector: '.brick',
+    			animate: false,
+    			cellW: 260,
+    			cellH: 200,
+    			delay: 30,
+    			onResize: function() {
+    				//wall.refresh(wall.fitWidth(), wall.fitHeight());
+    			}
+    		});
+    		wall.fitZone(wall.fitWidth(), wall.fitHeight());
         };
         
     	$scope.time_due = new Date();
@@ -343,6 +360,8 @@ var SEModule = angular.module('se', ['ngRoute',
     		w = 1 + 3 * Math.random() << 0;
 			html += temp.replace(/\{height\}/g, h*200).replace(/\{width\}/g, w*250).replace("{images}", images[i]);
     	}
+    	
+    	freewallContent = $("#freewall").html();
     	//$("#freewall").html(html);
 
     	$(function() {
