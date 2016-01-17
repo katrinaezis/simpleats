@@ -215,7 +215,7 @@ body {
 
     .order-item {
         width: 32%;
-            font-size: 13px;
+            font-size: 14px;
         display:inline-block;
 /*        border-right: 1px solid #f4f4f4;*/
 min-height: 95px;
@@ -279,3 +279,13 @@ body {
 #logo {
   display: inline-block;
   height: 28px; }
+
+
+  .close {
+      cursor: pointer;
+      margin-left: 12px; }
+
+      .close:hover {
+          color: #f05423;
+      cursor: pointer;
+      margin-left: 12px; }
