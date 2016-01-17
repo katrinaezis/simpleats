@@ -12,7 +12,8 @@ var SEModule = angular.module('se', ['ngRoute',
 	r('/', 'templates/homepage.html', 'HomeController');
 	r('/order', 'templates/make_order.html', 'OrderController');
 	r('/dashboard', 'templates/orders.html', 'DashboardController');
-        
+    r('/thankyou', 'templates/thankyou.html', 'ThankYouController');
+    
 	$routeProvider
 	    .otherwise({
 		redirectTo: '/'});

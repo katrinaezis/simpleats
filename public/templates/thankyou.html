@@ -1,0 +1,33 @@
+<div class="page cactus">
+
+	<header>
+		<span class="logo"></span>
+	</header>
+	
+	<div class="content">
+		Pick from our amazing selection of items:
+		
+		<ul class="items">
+			<li class="item" ng-repeat="menuitem in menu_items">
+			  <img class="itemImage" src="/images/food/{{menuitem.thumbnail}}"/>
+			  <div class="itemDetails">
+			      <div class="itemHeader">
+					  <div class="itemTitle">{{menuitem.title}}</div>
+					  <div class="addToOrderButton"> 
+							<button class="mainBtn" ng-click="add_to_order(menuitem)"><span>Add To Order</span></button><br/>
+							<span class="itemQuantity">Quantity: {{ orderItemQuantity(menuitem.title) }}</span>
+					  </div>
+				  </div>
+				  <!-- <div class="itemType">{{menuitem.type}}</div> -->
+				  <div class="itemDescription">{{menuitem.description}}</div>
+				  <div class="itemPrice">${{menuitem.price.toFixed(2)}}</div>
+			  </div>
+			</li>
+		</ul>
+		
+		<div class="checkoutButtons">
+		    <div>Total items: {{ order_in.menuItems.length }}</div>
+			<button class="mainBtn" ng-click="make_order()">Checkout</button>
+		</div>
+	</div>
+</div>
