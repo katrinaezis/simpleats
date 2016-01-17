@@ -1,9 +1,9 @@
 <center>
-  <div class="column">
+  <div class="column left-col">
   <div id ="orderList">
     <div  id="fullOrder" ng-repeat="order in starting_orders()"  class="row">
       <div id="innerContent" class="">
-	<div id="titleTimer" class="time time{{order.minutes_start}}"
+	<div id="titleTimer" class="time time-{{order.minutes_start}}"
              style="background-color: {{background_color(order.minutes_start)}}">
 	  <div class="col s6">Table {{order.table.id}} ({{order.name.split(" ")[1]}})</div>
 	  <div id="timer" class="col s6 right-align">{{order.minutes_start}}m </div>
@@ -18,7 +18,7 @@
     </div>
   </div>
 </div>
-<div class="column">
+<div class="column right-col">
   <div id ="orderList">
     <div  id="fullOrder" ng-repeat="order in cooking_orders()"  class="row">
       <div id="innerContent" class="">

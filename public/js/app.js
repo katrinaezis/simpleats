@@ -133,8 +133,19 @@ var SEModule = angular.module('se', ['ngRoute',
         $scope.background_color = function(time) {
             var color;
             time = Math.abs(time);
+            var color1 = [71,44,117];
+            var color2 = [240,84,35];
+            var pos;
+            var in_between = function (color_index, time) {
+                var col1 = color1[color_index];
+                var col2 = color2[color_index];
+                return (col1 + ((col2 - col1) * (1 -  (time / 20)))).toFixed(); }
+            
             if (time > 5) {
-                color = [193,249,70, 1 - (time / 50)];
+                color = [in_between(0, time),
+                         in_between(1, time),
+                         in_between(2, time), 1 - (time / 20)];
+                console.log(color);
                 return 'rgba(' + color.join(",") + ')'; }
             if (time <= 5) {
                 color = [255,115,71, 1 - (time / 50)];
