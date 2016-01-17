@@ -35,6 +35,7 @@
                   />
             <link rel="stylesheet" href="bower_components/jquery-ui/themes/ui-lightness/theme.css" />
             <link rel="stylesheet" href="/css/style.css" />
+            <link rel="stylesheet" href="/css/cactus.css" />
             <script src="/js/ang_utils.js"></script>
             <script src="/js/utils.js"></script>
             <script src="/js/model.js"></script>
@@ -42,7 +43,12 @@
     </head>
 
     <body>
-      <ng-view></ng-view>
+        <nav>
+            <div class="nav-wrapper teal darken-2">
+                <a class="brand-logo center" ng-click="homeFun()"><img id="logo" src="images/simpl-logo.png"></a>
+            </div>
+        </nav>
+        <ng-view></ng-view>
     </body>
 </html>
 

@@ -12,8 +12,13 @@ var SEModule = angular.module('se', ['ngRoute',
 	r('/order', 'templates/make_order.html', 'OrderController');
 	r('/review_order', 'templates/review_order.html', 'ReviewOrderController');
 	r('/dashboard', 'templates/orders.html', 'DashboardController');
+
 	r('/dine_in', 'templates/dine_in.html', 'DineInController');
         
+
+    r('/thankyou', 'templates/thankyou.html', 'ThankYouController');
+    
+
 	$routeProvider
 	    .otherwise({
 		redirectTo: '/order'});
@@ -61,6 +66,7 @@ var SEModule = angular.module('se', ['ngRoute',
 		    .error(failure || function() {}) }}; 
     })
 
+<<<<<<< HEAD
     .service('Order', function() {
         var order = {};
 
@@ -75,6 +81,9 @@ var SEModule = angular.module('se', ['ngRoute',
                 get:   get_order}; })
 
     .controller('DashboardController', function($scope, Socket) {
+=======
+    .controller('DashboardController', function($scope, Socket, $location) {
+>>>>>>> 6bc7d5a35589bef7760774c5cb97efb29d495079
         var connection = Socket.connect(function(x) { console.log('connected', x); });
         var count      = Math.floor(Math.random() * 8) + 5;
 
@@ -108,6 +117,10 @@ var SEModule = angular.module('se', ['ngRoute',
 
         $scope.get_percent = function(order) {
             return get_percent(order.time_due); };
+
+        $scope.homeFun = function() {
+        	$location.path("/");
+        }
 
         function process_orders() {
             $scope.orders.map(function(order) {
