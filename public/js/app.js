@@ -244,6 +244,7 @@ var SEModule = angular.module('se', ['ngRoute',
 
 
     .controller('OrderController', function($scope, Socket, Order, $location) {
+    	scroll_top();
         $scope.menu_items = menu_items;
         $scope.order_in = { menuItems: [] };
         console.log(Socket);
@@ -279,6 +280,7 @@ var SEModule = angular.module('se', ['ngRoute',
     })
 
     .controller('ReviewOrderController', function($scope, Order, $location, Socket) {
+    	scroll_top();
     	
         $scope.order = Order.get();
 
@@ -313,7 +315,7 @@ var SEModule = angular.module('se', ['ngRoute',
             $location.path('/thankyou')}; })
         
     .controller('DineInController', function($scope, Order, $location) {
-    	
+    	scroll_top();
         $scope.order    = Order.get();
         $scope.checked  = false;
 
@@ -325,11 +327,13 @@ var SEModule = angular.module('se', ['ngRoute',
         .controller('DemoController', function($scope) {
             })
     .controller('ThankyouController', function($scope, Order) {
+    	scroll_top();
         $scope.order_in = Order.get();
         $scope.num_people = Order.get_num_people();
         $scope.time = print_time(Order.get_time());
     })
     .controller('HomeController', function($scope, Order) {
+    	scroll_top();
 
         $scope.update_stuff = function() {
             Order.set_num_people($scope.num_people);

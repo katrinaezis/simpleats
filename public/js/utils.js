@@ -378,3 +378,6 @@ function print_time(time) {
     if (minutes.length == 1) minutes = "0" + minutes;
             
     return hour + ":" + minutes; }
+
+function scroll_top() {
+    window.scrollTo(0, 0); }
