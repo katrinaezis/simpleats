@@ -12,6 +12,7 @@ var SEModule = angular.module('se', ['ngRoute',
 	r('/order', 'templates/make_order.html', 'OrderController');
 	r('/review_order', 'templates/review_order.html', 'ReviewOrderController');
 	r('/dashboard', 'templates/orders.html', 'DashboardController');
+	r('/dine_in', 'templates/dine_in.html', 'DineInController');
         
 	$routeProvider
 	    .otherwise({
@@ -134,7 +135,7 @@ var SEModule = angular.module('se', ['ngRoute',
         console.log(Socket);
         var connection = Socket.connect();
         $scope.add_to_order = function(menuItem) {
-            $scope.order_in.menuItems.push(menuItem);
+            $scope.order_in.menuItems.push(generate_ticket(menuItem));
             console.log('added menu item to order: ' + menuItem);
         };
         $scope.make_order = function() {
@@ -146,7 +147,7 @@ var SEModule = angular.module('se', ['ngRoute',
         	var q = 0;
         	var menuItems = $scope.order_in.menuItems;
         	for (var i = 0; i < menuItems.length; i++) {
-        		if (menuItems[i].title == menuItemTitle) {
+        		if (menuItems[i].item.title == menuItemTitle) {
         			q++;
         		}
         	}
@@ -154,15 +155,39 @@ var SEModule = angular.module('se', ['ngRoute',
         }
 
         $scope.checkout = function() {
-            Order.set(order_in);
+            Order.set($scope.order_in);
             $location.path('/review_order'); };
     })
 
     .controller('ReviewOrderController', function($scope, Order, $location) {
         $scope.order = Order.get();
 
+        $scope.subtotal = 0;
+        $scope.order.menuItems.map(function(item) {
+            $scope.subtotal += item.item.price; });
+        
+        $scope.tax       = $scope.subtotal * 0.085;
+        $scope.total     = $scope.subtotal + $scope.tax;
+        $scope.prep_time = longest_prep_time($scope.order) / 1000 / 60;
+
+        $scope.checkout  = function(type) {
+            $scope.order.dining_type = type;
+            Order.set($scope.order)
+            if (type  == 'dine_in')
+                $location.path('/dine_in');
+            else
+                $location.path('/checkout'); };
     })
-                
+
+    .controller('DineInController', function($scope, Order, $location) {
+        $scope.order    = Order.get();
+        $scope.checked  = false;
+
+        $scope.checkout = function() {
+            $location.path('/check_out'); };
+        
+    })
+
     .controller('HomeController', function($scope) {
         $scope.test = 123;
 
