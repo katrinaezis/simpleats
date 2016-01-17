@@ -107,7 +107,7 @@ var SEModule = angular.module('se', ['ngRoute',
             $scope.orders.push(generate_order());
 
         $scope.get_minutes = function(order) {
-            return get_difference(order.time_due) + Math.round(Math.random() * 4); };
+            return get_difference(order.time_due); };
 
         $scope.get_minutes_start = function(order) {
             return get_difference(start_time(order)); };
@@ -120,13 +120,13 @@ var SEModule = angular.module('se', ['ngRoute',
 
         $scope.starting_orders = function() {
             return $scope.orders.filter(function(o) {
-                return o.minutes_start > 0; })
+                return o.minutes_start > 0  && o.minutes_start > -3; })
                 .sort(function(a, b) {
                     return a.minutes_start - b.minutes_start; }); };
 
         $scope.cooking_orders = function() {
             return $scope.orders.filter(function(o) {
-                return o.minutes_start <= 0; })
+                return o.minutes_start <= 0 && o.minutes_due > -3; })
                 .sort(function(a, b) {
                     return a.minutes_due - b.minutes_due; }); };
 
@@ -156,7 +156,7 @@ var SEModule = angular.module('se', ['ngRoute',
             else
                 process_orders();
 
-            setTimeout(timer, 10 * 1000); }
+            setTimeout(timer, 4 * 1000); }
         timer();
     })
 
