@@ -10,7 +10,18 @@
 </div>
 
 <div id="toolbar">
-	<div>Number of People:</div><div>Dine-in Time: <input ng-model="time_due" ui-timepicker/></div>
+  <div>Number of People: <select ng-change="update_stuff()" ng-model="num_people" style="display:inline-block;width: 150px;margin-bottom: 12px;color: #FF6E40;">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+  </select>
+  </div>
+  <div>Dine-in Time: <input ng-change="update_stuff()" ng-model="time_due" ui-timepicker style="color: #FF6E40"/></div>
 </div>
 
 <div class="layout container">

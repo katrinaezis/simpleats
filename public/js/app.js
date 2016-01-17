@@ -70,6 +70,8 @@ var SEModule = angular.module('se', ['ngRoute',
 
     .service('Order', function() {
         var order = {};
+        var num_people;
+        var time ;
 
         function set_order(o) {
             order = o;
@@ -78,7 +80,25 @@ var SEModule = angular.module('se', ['ngRoute',
         function get_order() {
             return order; }
 
+        function set_num_people(o) {
+            num_people = o;
+            return num_people; }
+
+        function get_num_people() {
+            return num_people; }
+
+        function set_time(o) {
+            time = o;
+            return time; }
+
+        function get_time() {
+            return time; }
+
         return {set:   set_order,
+                set_num_people: set_num_people,
+                get_num_people: get_num_people,
+                set_time: set_time,
+                get_time: get_time,
                 get:   get_order}; })
 
 
@@ -287,8 +307,16 @@ var SEModule = angular.module('se', ['ngRoute',
         
     })
 
-    .controller('HomeController', function($scope) {
-    	
+        .controller('DemoController', function($scope) {
+            })
+    .controller('HomeController', function($scope, Order) {
+
+        $scope.update_stuff = function() {
+            Order.set_num_people($scope.num_people);
+            Order.set_time($scope.time_due);
+            console.log(Order.get_time(), Order.get_num_people());
+        };
+        
     	$scope.time_due = new Date();
     	
     	var temp = "<div class='brick' style='width:{width}px; height: {height}px; background-image: {images}; background-size: cover'><div class='cover'></div></div>";
