@@ -236,6 +236,8 @@ var SEModule = angular.module('se', ['ngRoute',
         $scope.make_order = function() {
             var order = generate_order();
             order = {"tickets":[{"item":{"type":"sandwich","title":"Pastrami","description":"house-smoked beef brisket, creole mustard, baguette, half sour pickle on the side","price":12.5,"prep_time":14,"options":[{"name":"with swiss","price":1.5,"type":"boolean"}],"thumbnail":"PF-CHANGS-APPLE-CHAI-COBBLER-sm.jpg"},"comments":"medium rare, tator tots","options":{}},{"item":{"type":"sandwich","title":"Pastrami","description":"house-smoked beef brisket, creole mustard, baguette, half sour pickle on the side","price":12.5,"prep_time":14,"options":[{"name":"with swiss","price":1.5,"type":"boolean"}],"thumbnail":"PF-CHANGS-APPLE-CHAI-COBBLER-sm.jpg"},"comments":"Give me all of the bacon and eggs you have. Do you understand?","options":{"with swiss":true}},{"item":{"type":"sandwich","title":"Pastrami","description":"house-smoked beef brisket, creole mustard, baguette, half sour pickle on the side","price":12.5,"prep_time":14,"options":[{"name":"with swiss","price":1.5,"type":"boolean"}],"thumbnail":"PF-CHANGS-APPLE-CHAI-COBBLER-sm.jpg"},"comments":"xtra mayo","options":{"with swiss":true}}],"name":"David Karn","time_due":"2016-01-17T20:00:12.622Z"};
+            order = Order.get();
+            order.name = "David Karn";
             order.time_due = new Date() - (-1000 * 60 * 18);
             console.log(order);
             connection.emit('new_order', order); }; })
@@ -276,7 +278,7 @@ var SEModule = angular.module('se', ['ngRoute',
         }
     })
 
-    .controller('ReviewOrderController', function($scope, Order, $location) {
+    .controller('ReviewOrderController', function($scope, Order, $location, Socket) {
     	
         $scope.order = Order.get();
 
@@ -294,9 +296,16 @@ var SEModule = angular.module('se', ['ngRoute',
             if (type  == 'dine_in')
                 $location.path('/dine_in');
             else
-                $location.path('/checkout'); };
-    })
+                $location.path('/checkout'); }
 
+        var connection = Socket.connect();
+        $scope.checkout = function() {
+            var order = generate_order();
+            order = {"tickets":[{"item":{"type":"sandwich","title":"Pastrami","description":"house-smoked beef brisket, creole mustard, baguette, half sour pickle on the side","price":12.5,"prep_time":14,"options":[{"name":"with swiss","price":1.5,"type":"boolean"}],"thumbnail":"PF-CHANGS-APPLE-CHAI-COBBLER-sm.jpg"},"comments":"medium rare, tator tots","options":{}},{"item":{"type":"sandwich","title":"Pastrami","description":"house-smoked beef brisket, creole mustard, baguette, half sour pickle on the side","price":12.5,"prep_time":14,"options":[{"name":"with swiss","price":1.5,"type":"boolean"}],"thumbnail":"PF-CHANGS-APPLE-CHAI-COBBLER-sm.jpg"},"comments":"Give me all of the bacon and eggs you have. Do you understand?","options":{"with swiss":true}},{"item":{"type":"sandwich","title":"Pastrami","description":"house-smoked beef brisket, creole mustard, baguette, half sour pickle on the side","price":12.5,"prep_time":14,"options":[{"name":"with swiss","price":1.5,"type":"boolean"}],"thumbnail":"PF-CHANGS-APPLE-CHAI-COBBLER-sm.jpg"},"comments":"xtra mayo","options":{"with swiss":true}}],"name":"David Karn","time_due":"2016-01-17T20:00:12.622Z"};
+            order.time_due = new Date() - (-1000 * 60 * 18);
+            console.log(order);
+            connection.emit('new_order', order); }; })
+        
     .controller('DineInController', function($scope, Order, $location) {
     	
         $scope.order    = Order.get();
