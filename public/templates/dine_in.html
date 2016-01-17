@@ -1,16 +1,20 @@
-<nav>
-	<div class="nav-wrapper teal darken-2">
-		<a href="#" class="brand-logo center"><img id="logo" src="images/simpl-logo.png"></a>
-		<!-- <ul id="nav-mobile" class="left hide-on-med-and-down">
-			<li><a href="sass.html">Sass</a></li>
-			<li><a href="badges.html">Components</a></li>
-			<li><a href="collapsible.html">JavaScript</a></li>
-		</ul> -->
+<div class="page cactus">
+
+	<header>
+		<span class="logo"></span>
+	</header>
+	
+	<div class="content">
+	
+	<div id ="orderList" class="container">
+	  <h1>When will you be here?</h1>
+	  
+	  <input ng-model="order.time_due" ui-timepicker/>
+       
+	  <div class="checkoutButtons">
+	    <button class="mainBtn" ng-click="checkout()">Checkout</button>
+	  </div>
 	</div>
-</nav>
-<div id ="orderList" class="container">
-  <h1>What time do you want to come</h1>
-  <div id="actions">
-    <button ng-click="checkout()">Checkout</button>
-  </div>
+
+	</div>
 </div>

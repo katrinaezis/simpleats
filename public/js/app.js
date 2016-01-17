@@ -1,6 +1,8 @@
 
 var SEModule = angular.module('se', ['ngRoute',
-                                      'btford.socket-io'])
+                                      'btford.socket-io',
+                                      'ui.timepicker'])
+                                      
 
     .config(function($routeProvider) {
 	function r(path, template, controller) {
@@ -170,6 +172,7 @@ var SEModule = angular.module('se', ['ngRoute',
     })
 
     .controller('ReviewOrderController', function($scope, Order, $location) {
+    	
         $scope.order = Order.get();
 
         $scope.subtotal = 0;
@@ -190,6 +193,7 @@ var SEModule = angular.module('se', ['ngRoute',
     })
 
     .controller('DineInController', function($scope, Order, $location) {
+    	
         $scope.order    = Order.get();
         $scope.checked  = false;
 
