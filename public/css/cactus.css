@@ -1,0 +1,51 @@
+.cactus.page {
+	   background: #e1962f url("../images/cactus-body-bg.jpg") repeat 50% 0 fixed;
+	   line-height: 1.25em;
+       font-family: Georgia, serif;
+}
+
+.cactus header {
+		text-align: center;
+		padding: 1em;
+}
+
+.cactus .content {
+	max-width: 960px;
+    margin: 0 auto;
+    padding: 2em;
+    background: #e9e7de url('../images/cactus-content-bg.png') repeat 0 0;
+    text-shadow: 0 1px 0 #ffffff;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-size: 18px;
+    color: #3c270d;
+}
+
+.cactus .item {
+	border-bottom: 1px dotted #000000;
+    padding-top: .75em;
+}
+
+.cactus .itemTitle {
+	color: #8c4221;
+    font-size: 1.625em;
+    font-weight: 600;
+}
+
+.cactus .itemImage {
+	padding: .175em;
+    background: #ffffff;
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+
+.cactus .logo {
+	display: inline-block;
+	width: 260px;
+	height: 101px;
+    background-image: url('../images/cactus-logo-sub@2x.png');
+    background-size: 260px 101px;
+}
