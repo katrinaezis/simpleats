@@ -120,13 +120,13 @@ var SEModule = angular.module('se', ['ngRoute',
 
         $scope.starting_orders = function() {
             return $scope.orders.filter(function(o) {
-                return o.minutes_start < 0; })
+                return o.minutes_start > 0; })
                 .sort(function(a, b) {
-                    return b.minutes_start - a.minutes_start; }); };
+                    return a.minutes_start - b.minutes_start; }); };
 
         $scope.cooking_orders = function() {
             return $scope.orders.filter(function(o) {
-                return o.minutes_start >= 0; })
+                return o.minutes_start <= 0; })
                 .sort(function(a, b) {
                     return a.minutes_due - b.minutes_due; }); };
 

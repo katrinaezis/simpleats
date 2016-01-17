@@ -128,10 +128,13 @@ function find_and_reserve_table(order) {
                   find_open_table(order.tickets.length)); }
 
 function generate_comment() {
-    var comments = ['extra parsley', 'light mayo', 'medium rare', 'no potatos', 'lots of potatos', '', '', '', '', ''];
+    var comments = ['extra parsley', 'light mayo', 'all the bacon and eggs you have', 'medium rare', 'no potatos', 'lots of potatos', false, false, false, false, false];
     var comment = [];
     comment.push(comments[Math.floor(Math.random() * comments.length)]);
-    return comment.join(","); }
+    comment.push(comments[Math.floor(Math.random() * comments.length)]);
+
+
+    return comment.filter(return_it).join(", "); }
 
 function generate_ticket(menu_item, comment) {
     var item      = menu_item || menu_items[Math.floor(Math.random() * menu_items.length)];

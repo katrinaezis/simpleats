@@ -193,7 +193,8 @@ body {
             font-size: 13px;
         display:inline-block;
 /*        border-right: 1px solid #f4f4f4;*/
-        min-height: 100px;
+min-height: 100px;
+vertical-align: top;
         padding: 12px; }
 
 
