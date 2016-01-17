@@ -15,7 +15,7 @@ var SEModule = angular.module('se', ['ngRoute',
 	r('/review_order', 'templates/review_order.html', 'ReviewOrderController');
 	r('/dashboard', 'templates/orders.html', 'DashboardController');
 	r('/dine_in', 'templates/dine_in.html', 'DineInController');
-    r('/thankyou', 'templates/thankyou.html', 'ThankYouController');
+    r('/thankyou', 'templates/thankyou.html', 'ThankyouController');
         r('/', 'templates/homepage.html', 'HomeController');
                 r('/demo', 'templates/demo.html', 'DemoController');
             r('/order_button', 'templates/order_button.html', 'OrderButtonController');
@@ -301,10 +301,16 @@ var SEModule = angular.module('se', ['ngRoute',
         var connection = Socket.connect();
         $scope.checkout = function() {
             var order = generate_order();
-            order = {"tickets":[{"item":{"type":"sandwich","title":"Pastrami","description":"house-smoked beef brisket, creole mustard, baguette, half sour pickle on the side","price":12.5,"prep_time":14,"options":[{"name":"with swiss","price":1.5,"type":"boolean"}],"thumbnail":"PF-CHANGS-APPLE-CHAI-COBBLER-sm.jpg"},"comments":"medium rare, tator tots","options":{}},{"item":{"type":"sandwich","title":"Pastrami","description":"house-smoked beef brisket, creole mustard, baguette, half sour pickle on the side","price":12.5,"prep_time":14,"options":[{"name":"with swiss","price":1.5,"type":"boolean"}],"thumbnail":"PF-CHANGS-APPLE-CHAI-COBBLER-sm.jpg"},"comments":"Give me all of the bacon and eggs you have. Do you understand?","options":{"with swiss":true}},{"item":{"type":"sandwich","title":"Pastrami","description":"house-smoked beef brisket, creole mustard, baguette, half sour pickle on the side","price":12.5,"prep_time":14,"options":[{"name":"with swiss","price":1.5,"type":"boolean"}],"thumbnail":"PF-CHANGS-APPLE-CHAI-COBBLER-sm.jpg"},"comments":"xtra mayo","options":{"with swiss":true}}],"name":"David Karn","time_due":"2016-01-17T20:00:12.622Z"};
-            order.time_due = new Date() - (-1000 * 60 * 18);
-            console.log(order);
-            connection.emit('new_order', order); }; })
+            order = {"tickets":[{"item":{"type":"sandwich","title":"Pastrami","description":"house-smoked beef brisket, creole mustard, baguette, half sour pickle on the side","price":12.5,"prep_time":14,"options":[{"name":"with swiss","price":1.5,"type":"boolean"}],"thumbnail":"PF-CHANGS-APPLE-CHAI-COBBLER-sm.jpg"},"comments":"medium rare, tator tots","options":{}},{"item":{"type":"sandwich","title":"Pastrami","description":"house-smoked beef brisket, creole mustard, baguette, half sour pickle on the side","price":12.5,"prep_time":14,"options":[{"name":"with swiss","price":1.5,"type":"boolean"}],"thumbnail":"PF-CHANGS-APPLE-CHAI-COBBLER-sm.jpg"},"comments":"Give me all of the bacon and eggs you have. Do you understand?","options":{"with swiss":true}},{"item":{"type":"sandwich","title":"Pastrami","description":"house-smoked beef brisket, creole mustard, baguette, half sour pickle on the side","price":12.5,"prep_time":14,"options":[{"name":"with swiss","price":1.5,"type":"boolean"}],"thumbnail":"PF-CHANGS-APPLE-CHAI-COBBLER-sm.jpg"},"comments":"xtra mayo","options":{"with swiss":true}}],"name":"David Karnn","time_due":"2016-01-17T20:00:12.622Z"};
+            order = Order.get();
+
+            $scope.order.name = "David Karn"
+            $scope.order.tickets = $scope.order.menuItems;
+            $scope.order.time_due = new Date() - (-1000 * 60 * 18);
+            
+            connection.emit('new_order', $scope.order);
+            console.log('tset');
+            $location.path('/thankyou')}; })
         
     .controller('DineInController', function($scope, Order, $location) {
     	
@@ -318,6 +324,11 @@ var SEModule = angular.module('se', ['ngRoute',
 
         .controller('DemoController', function($scope) {
             })
+    .controller('ThankyouController', function($scope, Order) {
+        $scope.order_in = Order.get();
+        $scope.num_people = Order.get_num_people();
+        $scope.time = print_time(Order.get_time());
+    })
     .controller('HomeController', function($scope, Order) {
 
         $scope.update_stuff = function() {

@@ -367,3 +367,14 @@ function joiner(a1, a2) {
 
 function return_it(x) {
     return x; }
+
+
+function print_time(time) {
+    var time = new Date(time);
+
+    var hour    = time.getHours().toString();
+    var minutes = time.getMinutes().toString();
+    if (hour.length == 1) hour = "0" + hour;
+    if (minutes.length == 1) minutes = "0" + minutes;
+            
+    return hour + ":" + minutes; }
