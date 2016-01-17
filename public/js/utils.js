@@ -364,3 +364,6 @@ function object_in_list(object, list) {
 
 function joiner(a1, a2) {
     return a1.concat(a2); }
+
+function return_it(x) {
+    return x; }

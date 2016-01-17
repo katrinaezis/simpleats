@@ -42,7 +42,60 @@ var menu_items =
           price:         9,
           prep_time:     10,
           thumbnail:	'PF-CHANGS-HONG-KONG-STYLE-SEA-BASS-sm.jpg'
-          }];
+         }];
+
+var names = ["Sherill Bettcher",
+             "Camille Bourke",
+             "Janay Holbert",
+             "Mari Amezquita",
+             "Sharell Aberle",
+             "Enid Schulte",
+             "Keri Hankins",
+             "Cassi Greenlaw",
+             "Tyrone Fisk",
+             "Magdalen Railey",
+             "Latesha Onstad",
+             "Ruben Nordberg",
+             "Nettie Steffenson",
+             "Hugo Raulston",
+             "Samira Sass",
+             "Alisia Demarco",
+             "Sallie Son",
+             "Amal Barnes",
+             "Hertha Baptiste",
+             "Corrie Suchan",
+             "Jannet Stapp",
+             "Cesar Boyle",
+             "Joie Mcfatridge",
+             "Agripina Mceachin",
+             "Jayna Shupe",
+             "Rebekah Terrazas",
+             "Ellyn Letsinger",
+             "Herma Ronald",
+             "Christy Savino",
+             "Deshawn Bochenek",
+             "Jo Barnett",
+             "Wendell Stack",
+             "Whitney Parsons",
+             "Tamera Gavin",
+             "Lizzie Harryman",
+             "Kristopher Middaugh",
+             "Tamatha Westervelt",
+             "Lettie Shor",
+             "Lavenia Comeaux",
+             "Luetta Fiorito",
+             "Lon Waldow",
+             "Gerard Zane",
+             "Keturah Hendrixson",
+             "Vincenzo Phillis",
+             "Giselle Bouie",
+             "Randy Mcmahon",
+             "Lakendra Seibold",
+             "Edison Sand",
+             "Farrah Mcglamery",
+             "Clifton Stockton"];
+
+
 
 var tables = [];
 for (var i = 0; i < 16; i++) {
@@ -75,10 +128,13 @@ function find_and_reserve_table(order) {
                   find_open_table(order.tickets.length)); }
 
 function generate_comment() {
-    var comments = ['extra parsley', 'light mayo', 'medium rare', 'no potatos', 'lots of potatos', '', '', '', '', ''];
+    var comments = ['extra parsley', 'light mayo', 'all the bacon and eggs you have', 'medium rare', 'no potatos', 'lots of potatos', false, false, false, false, false];
     var comment = [];
     comment.push(comments[Math.floor(Math.random() * comments.length)]);
-    return comment.join(","); }
+    comment.push(comments[Math.floor(Math.random() * comments.length)]);
+
+
+    return comment.filter(return_it).join(", "); }
 
 function generate_ticket(menu_item, comment) {
     var item      = menu_item || menu_items[Math.floor(Math.random() * menu_items.length)];
@@ -95,7 +151,8 @@ function generate_ticket(menu_item, comment) {
 function generate_order() {
     var length = Math.ceil(Math.random() * 4);
     var order  = {tickets:    [],
-                  time_due:  new Date(new Date() - 1 + 1000 * 60 * (Math.random() * 60 - 4))};
+                  name:       names.shift(),
+                  time_due:   new Date(new Date() - 1 + 1000 * 60 * (Math.random() * 60 - 4))};
     
     for (var i = 0; i < length; i++) 
         order.tickets.push(generate_ticket());

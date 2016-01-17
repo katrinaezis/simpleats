@@ -14,16 +14,14 @@ var SEModule = angular.module('se', ['ngRoute',
 	r('/order', 'templates/make_order.html', 'OrderController');
 	r('/review_order', 'templates/review_order.html', 'ReviewOrderController');
 	r('/dashboard', 'templates/orders.html', 'DashboardController');
-
 	r('/dine_in', 'templates/dine_in.html', 'DineInController');
-        
-
     r('/thankyou', 'templates/thankyou.html', 'ThankYouController');
+    r('/', 'templates/homepage.html', 'HomeController');
     
 
 	$routeProvider
 	    .otherwise({
-		redirectTo: '/order'});
+		redirectTo: '/dashboard'});
     })
 
     .factory('Socket', function (socketFactory) {
@@ -84,7 +82,7 @@ var SEModule = angular.module('se', ['ngRoute',
 
     .controller('DashboardController', function($scope, Socket, $location) {
         var connection = Socket.connect(function(x) { console.log('connected', x); });
-        var count      = Math.floor(Math.random() * 8) + 5;
+        var count      = 5;
 
         $scope.orders  = [];
         
@@ -109,7 +107,7 @@ var SEModule = angular.module('se', ['ngRoute',
             $scope.orders.push(generate_order());
 
         $scope.get_minutes = function(order) {
-            return get_difference(order.time_due) + Math.round(Math.random() * 4); };
+            return get_difference(order.time_due); };
 
         $scope.get_minutes_start = function(order) {
             return get_difference(start_time(order)); };
@@ -117,9 +115,47 @@ var SEModule = angular.module('se', ['ngRoute',
         $scope.get_percent = function(order) {
             return get_percent(order.time_due); };
 
+<<<<<<< HEAD
+        // $scope.homeFun = function() {
+        // 	$location.path("/");
+        // }
+=======
         $scope.homeFun = function() {
-        	$location.path("/");
-        }
+            $location.path("/"); }
+
+        $scope.starting_orders = function() {
+            return $scope.orders.filter(function(o) {
+                return o.minutes_start > 0  && o.minutes_start > -3; })
+                .sort(function(a, b) {
+                    return a.minutes_start - b.minutes_start; }); };
+
+        $scope.cooking_orders = function() {
+            return $scope.orders.filter(function(o) {
+                return o.minutes_start <= 0 && o.minutes_due > -3; })
+                .sort(function(a, b) {
+                    return a.minutes_due - b.minutes_due; }); };
+
+        $scope.background_color = function(time) {
+            var color;
+            time = Math.abs(time);
+            var color1 = [71,44,117];
+            var color2 = [240,84,35];
+            var pos;
+            var in_between = function (color_index, time) {
+                var col1 = color1[color_index];
+                var col2 = color2[color_index];
+                return (col1 + ((col2 - col1) * (1 -  (time / 20)))).toFixed(); }
+            
+            if (time > 5) {
+                color = [in_between(0, time),
+                         in_between(1, time),
+                         in_between(2, time), 0.66 - (time / 65)];
+                console.log(color);
+                return 'rgba(' + color.join(",") + ')'; }
+            if (time <= 5) {
+                color = [255,115,71, 1 - (time / 50)];
+                return 'rgba(' + color.join(",") + ')'; }};
+>>>>>>> 2b77fadde69d76731df19f41684577e9130b56da
 
         function process_orders() {
             $scope.orders.map(function(order) {
@@ -137,7 +173,7 @@ var SEModule = angular.module('se', ['ngRoute',
             else
                 process_orders();
 
-            setTimeout(timer, 10 * 1000); }
+            setTimeout(timer, 4 * 1000); }
         timer();
     })
 
@@ -169,6 +205,11 @@ var SEModule = angular.module('se', ['ngRoute',
         $scope.checkout = function() {
             Order.set($scope.order_in);
             $location.path('/review_order'); };
+
+        $scope.homeFun = function() {
+        	console.log("kk");
+        	$location.path("/");
+        }
     })
 
     .controller('ReviewOrderController', function($scope, Order, $location) {
@@ -203,7 +244,37 @@ var SEModule = angular.module('se', ['ngRoute',
     })
 
     .controller('HomeController', function($scope) {
-        $scope.test = 123;
+    	var temp = "<div class='brick' style='width:{width}px; height: {height}px; background-image: {images}; background-size: cover'><div class='cover'></div></div>";
+    	var images = [
+    		"url(../images/restruantImg/restaurant.jpg)",
+    		"url(../images/restruantImg/restruant2.jpg)",
+    		"url(../images/restruantImg/restruant3.jpg)",
+    		"url(../images/restruantImg/restruant4.jpg)",
+    		"url(../images/restruantImg/restruant5.jpg)"
+    	];
+
+    	var w = 1, h = 1, html = '', color = '', limitItem = images.length;
+    	for (var i = 0; i < limitItem; ++i) {
+    		h = 1 + 3 * Math.random() << 0;
+    		w = 1 + 3 * Math.random() << 0;
+			html += temp.replace(/\{height\}/g, h*200).replace(/\{width\}/g, w*250).replace("{images}", images[i]);
+    	}
+    	$("#freewall").html(html);
+
+    	$(function() {
+    		var wall = new Freewall("#freewall");
+    		wall.reset({
+    			selector: '.brick',
+    			animate: false,
+    			cellW: 260,
+    			cellH: 200,
+    			delay: 30,
+    			onResize: function() {
+    				wall.refresh(wall.fitWidth(), wall.fitHeight());
+    			}
+    		});
+    		wall.fitZone(wall.fitWidth(), wall.fitHeight());
+    	});
 
     });
 
