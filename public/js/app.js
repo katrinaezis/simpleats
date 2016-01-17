@@ -82,7 +82,7 @@ var SEModule = angular.module('se', ['ngRoute',
 
     .controller('DashboardController', function($scope, Socket, $location) {
         var connection = Socket.connect(function(x) { console.log('connected', x); });
-        var count      = Math.floor(Math.random() * 8) + 5;
+        var count      = 5;
 
         $scope.orders  = [];
         
@@ -144,7 +144,7 @@ var SEModule = angular.module('se', ['ngRoute',
             if (time > 5) {
                 color = [in_between(0, time),
                          in_between(1, time),
-                         in_between(2, time), 1 - (time / 20)];
+                         in_between(2, time), 0.66 - (time / 65)];
                 console.log(color);
                 return 'rgba(' + color.join(",") + ')'; }
             if (time <= 5) {

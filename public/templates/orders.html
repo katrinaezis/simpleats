@@ -6,7 +6,7 @@
 	<div id="titleTimer" class="time time-{{order.minutes_start}}"
              style="background-color: {{background_color(order.minutes_start)}}">
 	  <div class="col s6">Table {{order.table.id}} ({{order.name.split(" ")[1]}})</div>
-	  <div id="timer" class="col s6 right-align">{{order.minutes_start}}m </div>
+	  <div id="timer" class="col s6 right-align">start in <strong>{{order.minutes_start}}m </strong></div>
 	</div>
         <div id="order-items">
 	  <div class="order-item" ng-repeat="item in order.tickets" ng-init="menuitem = item.item">
@@ -25,7 +25,7 @@
 	<div id="titleTimer" class="time time-{{order.minutes_due}}"
              style="background-color: {{background_color(order.minutes_due)}}">
 	  <div class="col s6">Table {{order.table.id}} ({{order.name.split(" ")[1]}})</div>
-	  <div id="timer" class="col s6 right-align">{{order.minutes_due}}m</div>
+	  <div id="timer" class="col s6 right-align">ready in <strong>{{order.minutes_due}}m</strong></div>
 	</div>
         <div id="order-items">
 	  <div class="order-item" ng-repeat="item in order.tickets" ng-init="menuitem = item.item">
