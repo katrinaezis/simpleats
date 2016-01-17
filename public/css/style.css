@@ -281,6 +281,17 @@ vertical-align: top;
 	background-color: #FF6E40;
 	padding: 8px;
 	margin-bottom: 12px;
+	padding-bottom: 2px;
+}
+
+.toolbarItem {
+	display: inline-block;
+	padding-right: 30px;
+	padding-bottom: 8px;
+}
+
+.toolbarItem select {
+	margin-bottom: 0px !important;
 }
 
 .brick {

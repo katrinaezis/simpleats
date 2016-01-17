@@ -12,7 +12,7 @@
 
 <div id="toolbar">
   <div class="container">
-  <div>Number of People: <select ng-change="update_stuff()" ng-model="num_people" style="display:inline-block;width: 150px;margin-bottom: 12px;color: #FF6E40;">
+  <div class="toolbarItem">Number of People: <select ng-change="update_stuff()" ng-model="num_people" style="display:inline-block;width: 150px;margin-bottom: 12px;color: #FF6E40;">
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
@@ -23,7 +23,7 @@
     <option value="8">8</option>
   </select>
   </div>
-  <div>Dine-in Time: <input ng-change="update_stuff()" ng-model="time_due" ui-timepicker style="color: #FF6E40"/></div>
+  <div class="toolbarItem">Dine-in Time: <input ng-change="update_stuff()" ng-model="time_due" ui-timepicker style="color: #FF6E40"/></div>
  </div>
 </div>
 
