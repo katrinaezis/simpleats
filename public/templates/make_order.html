@@ -8,42 +8,19 @@
 	<h4>Pick from our amazing selection of items:</h4>
 	<div class="container">
 		<div id="largeRow" class="row" ng-repeat="menuitem in menu_items">
+		    <!-- <img class="itemImage" src="/images/food/{{menuitem.thumbnail}}"/>-->
 			<div class="col s6 left-align">
 				{{menuitem.title}}
 			</div>
+			  <!-- <div class="itemDescription">{{menuitem.description}}</div>-->
 			<div class="col s3">
-				{{menuitem.price.toFixed(2)}}
+				${{menuitem.price.toFixed(2)}}
 			</div>
 			<div class="col s3 left-align">
-				<a href="#"><i class="fa fa-plus-square-o text-orange"></i></a>
+				<div  class="itemQuantity" ng-if="orderItemQuantity(menuitem.title) > 0">{{ orderItemQuantity(menuitem.title) }}</div><span ng-click="add_to_order(menuitem)"><i class="fa fa-plus-square-o text-orange"></i></div>
 			</div>
 		</div>
-	</div>
-</div>
 
-<div class="page cactus">
-
-	
-	<div class="content">
-		Pick from our amazing selection of items:
-		
-		<ul class="items">
-			<li class="item" ng-repeat="menuitem in menu_items">
-			  <img class="itemImage" src="/images/food/{{menuitem.thumbnail}}"/>
-			  <div class="itemDetails">
-			      <div class="itemHeader">
-					  <div class="itemTitle">{{menuitem.title}}</div>
-					  <div class="addToOrderButton"> 
-							<button class="mainBtn" ng-click="add_to_order(menuitem)"><span>Add To Order</span></button><br/>
-							<span class="itemQuantity">Quantity: {{ orderItemQuantity(menuitem.title) }}</span>
-					  </div>
-				  </div>
-				  <!-- <div class="itemType">{{menuitem.type}}</div> -->
-				  <div class="itemDescription">{{menuitem.description}}</div>
-				  <div class="itemPrice">${{menuitem.price.toFixed(2)}}</div>
-			  </div>
-			</li>
-		</ul>
 		
 		<div class="checkoutButtons">
 		    <div>Total items: {{ order_in.menuItems.length }}</div>
