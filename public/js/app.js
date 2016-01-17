@@ -60,7 +60,7 @@ var SEModule = angular.module('se', ['ngRoute',
 		    .error(failure || function() {}) }}; 
     })
 
-    .controller('DashboardController', function($scope, Socket) {
+    .controller('DashboardController', function($scope, Socket, $location) {
         var connection = Socket.connect(function(x) { console.log('connected', x); });
         var count      = Math.floor(Math.random() * 8) + 5;
 
@@ -93,6 +93,10 @@ var SEModule = angular.module('se', ['ngRoute',
 
         $scope.get_percent = function(order) {
             return get_percent(order.time_due); };
+
+        $scope.homeFun = function() {
+        	$location.path("/");
+        }
 
     })
 

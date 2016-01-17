@@ -14,8 +14,50 @@
 	margin: auto;
 }
 
+/*#content > img {
+	max-height: 300px;
+	float: right;
+	margin-top: 10%;
+}
+*/
+
+#content > h4 {
+	margin-top: 10%;
+}
+
+#frontPage {
+	background-image: url(../images/peopleEating.jpg);
+	height: 100vh;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#overlay {
+	background-color: rgba(255, 255, 255, 0.41);
+	z-index: 100;
+	height: 100%;
+	width: 100%;
+}
+
 #logo {
 	height: 60px;
+}
+
+.redstyle {
+	background-color: red;
+}
+
+.bluestyle {
+	background-color: blue;
+}
+
+.whitestyle {
+	background-color: white;
+}
+
+#orderItems {
+	padding: 1%;
 }
 
 body {

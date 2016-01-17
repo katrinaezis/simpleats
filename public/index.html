@@ -42,7 +42,12 @@
     </head>
 
     <body>
-      <ng-view></ng-view>
+        <nav>
+            <div class="nav-wrapper teal darken-2">
+                <a class="brand-logo center" ng-click="homeFun()"><img id="logo" src="images/simpl-logo.png"></a>
+            </div>
+        </nav>
+        <ng-view></ng-view>
     </body>
 </html>
 
