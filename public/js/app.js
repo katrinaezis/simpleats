@@ -12,11 +12,9 @@ var SEModule = angular.module('se', ['ngRoute',
 	r('/order', 'templates/make_order.html', 'OrderController');
 	r('/review_order', 'templates/review_order.html', 'ReviewOrderController');
 	r('/dashboard', 'templates/orders.html', 'DashboardController');
-
 	r('/dine_in', 'templates/dine_in.html', 'DineInController');
-        
-
     r('/thankyou', 'templates/thankyou.html', 'ThankYouController');
+    r('/', 'templates/homepage.html', 'HomeController');
     
 
 	$routeProvider
@@ -115,6 +113,11 @@ var SEModule = angular.module('se', ['ngRoute',
         $scope.get_percent = function(order) {
             return get_percent(order.time_due); };
 
+<<<<<<< HEAD
+        // $scope.homeFun = function() {
+        // 	$location.path("/");
+        // }
+=======
         $scope.homeFun = function() {
             $location.path("/"); }
 
@@ -150,6 +153,7 @@ var SEModule = angular.module('se', ['ngRoute',
             if (time <= 5) {
                 color = [255,115,71, 1 - (time / 50)];
                 return 'rgba(' + color.join(",") + ')'; }};
+>>>>>>> 2b77fadde69d76731df19f41684577e9130b56da
 
         function process_orders() {
             $scope.orders.map(function(order) {
@@ -199,6 +203,11 @@ var SEModule = angular.module('se', ['ngRoute',
         $scope.checkout = function() {
             Order.set($scope.order_in);
             $location.path('/review_order'); };
+
+        $scope.homeFun = function() {
+        	console.log("kk");
+        	$location.path("/");
+        }
     })
 
     .controller('ReviewOrderController', function($scope, Order, $location) {
@@ -231,7 +240,37 @@ var SEModule = angular.module('se', ['ngRoute',
     })
 
     .controller('HomeController', function($scope) {
-        $scope.test = 123;
+    	var temp = "<div class='brick' style='width:{width}px; height: {height}px; background-image: {images}; background-size: cover'><div class='cover'></div></div>";
+    	var images = [
+    		"url(../images/restruantImg/restaurant.jpg)",
+    		"url(../images/restruantImg/restruant2.jpg)",
+    		"url(../images/restruantImg/restruant3.jpg)",
+    		"url(../images/restruantImg/restruant4.jpg)",
+    		"url(../images/restruantImg/restruant5.jpg)"
+    	];
+
+    	var w = 1, h = 1, html = '', color = '', limitItem = images.length;
+    	for (var i = 0; i < limitItem; ++i) {
+    		h = 1 + 3 * Math.random() << 0;
+    		w = 1 + 3 * Math.random() << 0;
+			html += temp.replace(/\{height\}/g, h*200).replace(/\{width\}/g, w*250).replace("{images}", images[i]);
+    	}
+    	$("#freewall").html(html);
+
+    	$(function() {
+    		var wall = new Freewall("#freewall");
+    		wall.reset({
+    			selector: '.brick',
+    			animate: false,
+    			cellW: 260,
+    			cellH: 200,
+    			delay: 30,
+    			onResize: function() {
+    				wall.refresh(wall.fitWidth(), wall.fitHeight());
+    			}
+    		});
+    		wall.fitZone(wall.fitWidth(), wall.fitHeight());
+    	});
 
     });
 
