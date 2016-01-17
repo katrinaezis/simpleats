@@ -94,6 +94,10 @@ var SEModule = angular.module('se', ['ngRoute',
         $scope.get_percent = function(order) {
             return get_percent(order.time_due); };
 
+        $scope.$watch('orders', function(orders) {
+            orders.map(function(order) {
+                if (!order.table)
+                    find_and_reserve_table(order); }); });
     })
 
     .controller('OrderController', function($scope, Socket) {

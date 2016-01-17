@@ -44,6 +44,40 @@ var menu_items =
           thumbnail:	'PF-CHANGS-HONG-KONG-STYLE-SEA-BASS-sm.jpg'
           }];
 
+var tables = [];
+for (var i = 0; i < 16; i++) {
+    tables.push({id:                i + 1,
+                 seats:             Math.ceil(Math.random() * 8) + 1,
+                 currently_seated:  false,    
+                 reservations:     []}); }
+
+function find_open_table(seats_needed) {
+    // for demo purposes...
+    var open_tables = [];
+    for (var i in tables) {
+        var table = tables[i];
+        if (table.seats >= seats_needed
+            && !table.currently_seated
+            && table.reservations.length == 0) 
+            return table;
+        else
+            open_tables.push(table); }
+
+    return open_tables[0]; }
+
+function reserve_table(order, table) {
+    order.table            = table;
+    table.reservations     = [order]; }
+
+function find_and_reserve_table(order) {
+    reserve_table(order,
+                  find_open_table(order.tickets.length)); }
+
+function generate_comment() {
+    var comments = ['extra parsley', 'light mayo', 'medium rare', 'no potatos', 'lots of potatos', '', '', '', '', ''];
+    var comment = [];
+    comment.push(comments[Math.floor(Math.random() * comments.length)]);
+    return comment.join(","); }
 
 function generate_ticket() {
     var item      = menu_items[Math.floor(Math.random() * menu_items.length)];
@@ -54,6 +88,7 @@ function generate_ticket() {
             options[option.name] = true; });
     
     return {item: item,
+            comments: generate_comment(),
             options: options}; }
 
 function generate_order() {
