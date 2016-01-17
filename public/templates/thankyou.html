@@ -5,25 +5,12 @@
 	</header>
 	
 	<div class="content">
-		Pick from our amazing selection of items:
+		<h1 class = "title"> Great! </h1>
 		
-		<ul class="items">
-			<li class="item" ng-repeat="menuitem in menu_items">
-			  <img class="itemImage" src="/images/food/{{menuitem.thumbnail}}"/>
-			  <div class="itemDetails">
-			      <div class="itemHeader">
-					  <div class="itemTitle">{{menuitem.title}}</div>
-					  <div class="addToOrderButton"> 
-							<button class="mainBtn" ng-click="add_to_order(menuitem)"><span>Add To Order</span></button><br/>
-							<span class="itemQuantity">Quantity: {{ orderItemQuantity(menuitem.title) }}</span>
-					  </div>
-				  </div>
-				  <!-- <div class="itemType">{{menuitem.type}}</div> -->
-				  <div class="itemDescription">{{menuitem.description}}</div>
-				  <div class="itemPrice">${{menuitem.price.toFixed(2)}}</div>
-			  </div>
-			</li>
-		</ul>
+		<p> Your table for 2 will be ready at 2:30pm on July 26, 2016. </p>
+		
+		
+		
 		
 		<div class="checkoutButtons">
 		    <div>Total items: {{ order_in.menuItems.length }}</div>
