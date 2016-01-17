@@ -1,15 +1,40 @@
-<div id ="orderList">
-	<div  id="fullOrder" ng-repeat="order in orders"  class="row">
-		<div id="innerContent" class="section col s12">
-			<div id="titleTimer" class="row container">
-				<div class="col s6">Table {{number}}</div>
-				<div id="timer" class="col s6 left-align">{{get_minutes_start(order)}}</div>
-			</div>
-			<div id="orderItems" class="row container" ng-repeat="item in order.tickets" ng-init="menuitem = item.item">
-				<div class="col s3">{{menuitem.title}}</div>
-				<div class="col s9 left-align">{{menuitem.description}}</div>
-			</div>
-		</div>
+<center>
+  <div class="column">
+  <div id ="orderList">
+    <div  id="fullOrder" ng-repeat="order in starting_orders()"  class="row">
+      <div id="innerContent" class="">
+	<div id="titleTimer" class="time time{{order.minutes_start}}"
+             style="background-color: {{background_color(order.minutes_start)}}">
+	  <div class="col s6">Table {{order.table.id}} ({{order.name.split(" ")[1]}})</div>
+	  <div id="timer" class="col s6 right-align">{{order.minutes_start}}m</div>
 	</div>
+        <div id="order-items">
+	  <div class="order-item" ng-repeat="item in order.tickets" ng-init="menuitem = item.item">
+	    <strong style="font-weight:bold">{{menuitem.title}}</strong><br />
+	    <small>{{item.comments}}&nbsp;</small>
+	  </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
+<div class="column">
+  <div id ="orderList">
+    <div  id="fullOrder" ng-repeat="order in cooking_orders()"  class="row">
+      <div id="innerContent" class="">
+	<div id="titleTimer" class="time time{{order.minutes_start}}"
+             style="background-color: {{background_color(order.minutes_due)}}">
+	  <div class="col s6">Table {{order.table.id}} ({{order.name.split(" ")[1]}})</div>
+	  <div id="timer" class="col s6 right-align">{{order.minutes_start}}m</div>
+	</div>
+        <div id="order-items">
+	  <div class="order-item" ng-repeat="item in order.tickets" ng-init="menuitem = item.item">
+	    <strong style="font-weight:bold">{{menuitem.title}}</strong><br />
+	    <small>{{item.comments}}&nbsp;</small>
+	  </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</center>

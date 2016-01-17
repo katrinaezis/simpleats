@@ -116,8 +116,29 @@ var SEModule = angular.module('se', ['ngRoute',
             return get_percent(order.time_due); };
 
         $scope.homeFun = function() {
-        	$location.path("/");
-        }
+            $location.path("/"); }
+
+        $scope.starting_orders = function() {
+            return $scope.orders.filter(function(o) {
+                return o.minutes_start < 0; })
+                .sort(function(a, b) {
+                    return b.minutes_start - a.minutes_start; }); };
+
+        $scope.cooking_orders = function() {
+            return $scope.orders.filter(function(o) {
+                return o.minutes_start >= 0; })
+                .sort(function(a, b) {
+                    return a.minutes_due - b.minutes_due; }); };
+
+        $scope.background_color = function(time) {
+            var color;
+            time = Math.abs(time);
+            if (time > 5) {
+                color = [193,249,70, 1 - (time / 50)];
+                return 'rgba(' + color.join(",") + ')'; }
+            if (time <= 5) {
+                color = [255,115,71, 1 - (time / 50)];
+                return 'rgba(' + color.join(",") + ')'; }};
 
         function process_orders() {
             $scope.orders.map(function(order) {

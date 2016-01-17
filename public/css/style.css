@@ -5,13 +5,12 @@
 }
 
 #titleTimer {
-	font-size: 20pt;
-	padding: 2%;
+    padding-top: 4px;
+	font-size: 15px;
 }
 
 #innerContent, #orderItems, #titleTimer {
 	display: block;
-	margin: auto;
 }
 
 /*#content > img {
@@ -56,9 +55,7 @@
 	background-color: white;
 }
 
-#orderItems {
-	padding: 1%;
-}
+
 
 body {
 	color: #675d53;
@@ -180,4 +177,58 @@ body {
 		content: 'Add';
 	}
 	
+}
+
+#fullOrder {
+    width: 450px;
+    display: inline-block;
+    padding: 0;
+    margin: 20px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    border: 1px solid #eee; }
+
+    .order-item {
+        width: 32%;
+            font-size: 13px;
+        display:inline-block;
+/*        border-right: 1px solid #f4f4f4;*/
+        min-height: 100px;
+        padding: 12px; }
+
+
+        #order-items {
+            clear: both;
+        }
+
+        .column {
+            vertical-align: top;
+            text-align: left;
+            max-width: 480px;
+            display: inline-block;
+        }
+
+        .time {
+        }
+
+        #titleTimer {
+            height: 30px; }
+            #timer {
+                font-weight: bold; }
+
+
+.time.time-1, .time.time-2, .time.time-3, .time.time-4 {
+  animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: rgba(255,115,71, 0.4);
+  }
+  66% {
+    background-color: rgba(255,115,71, 1);
+  }
+  100% {
+    background-color: rgba(255,115,71, 0.4);
+  }
 }
