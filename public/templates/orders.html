@@ -6,7 +6,7 @@
 	<div id="titleTimer" class="time time-{{order.minutes_start}}"
              style="background-color: {{background_color(order.minutes_start)}}">
 	  <div class="col s6">Table {{order.table.id}} ({{order.name.split(" ")[1]}})</div>
-	  <div id="timer" class="col s6 right-align">start in <strong>{{order.minutes_start}}m </strong> <i class="close fa fa-times" ng-click="close(order)"></i></div>
+	  <div id="timer" class="col s6 right-align">start in <strong>{{order.minutes_start}}m </strong>, serve at <strong>{{print_time(order)}}</strong>  <i class="close fa fa-times" ng-click="close(order)"></i></div>
 	</div>
         <div id="order-items">
 	  <div class="order-item" ng-repeat="item in order.tickets" ng-init="menuitem = item.item">
@@ -25,7 +25,7 @@
 	<div id="titleTimer" class="time time-{{order.minutes_start}}"
              style="background-color: {{background_color(order.minutes_start)}}">
 	  <div class="col s6">Table {{order.table.id}} ({{order.name.split(" ")[1]}})</div>
-	  <div id="timer" class="col s6 right-align">start in <strong>{{order.minutes_start}}m</strong> <i class="close fa fa-times" ng-click="close(order)"></i></div>
+	  <div id="timer" class="col s6 right-align">start in <strong>{{order.minutes_start}}m</strong>, serve at <strong>{{print_time(order)}}</strong> <i class="close fa fa-times" ng-click="close(order)"></i></div>
 	</div>
         <div id="order-items">
 	  <div class="order-item" ng-repeat="item in order.tickets" ng-init="menuitem = item.item">

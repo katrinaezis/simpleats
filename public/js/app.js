@@ -87,6 +87,16 @@ var SEModule = angular.module('se', ['ngRoute',
 
         $scope.orders  = [];
 
+        $scope.print_time = function(order) {
+            var time = new Date(order.time_due);
+
+            var hour    = time.getHours().toString();
+            var minutes = time.getMinutes().toString();
+            if (hour.length == 1) hour = "0" + hour;
+            if (minutes.length == 1) minutes = "0" + minutes;
+            
+            return hour + ":" + minutes; }
+
         $scope.close   = function(order) {
             var orders = $scope.orders;
             var ret    = [];
