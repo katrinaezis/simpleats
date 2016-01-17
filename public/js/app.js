@@ -77,7 +77,8 @@ var SEModule = angular.module('se', ['ngRoute',
 
         function add_order(order) {
             $scope.$apply(function() {
-                $scope.orders.push(order); }); }
+                $scope.orders.push(order);
+                assign_tables(); }); }
         
         connection.on('new_order', function(order) {
             add_order(order); });
@@ -94,10 +95,13 @@ var SEModule = angular.module('se', ['ngRoute',
         $scope.get_percent = function(order) {
             return get_percent(order.time_due); };
 
-        $scope.$watch('orders', function(orders) {
-            orders.map(function(order) {
+        function assign_tables() {
+            $scope.orders.map(function(order) {
                 if (!order.table)
-                    find_and_reserve_table(order); }); });
+                    find_and_reserve_table(order);
+                console.log(order); });
+        console.log($scope.orders);}
+        assign_tables();
     })
 
     .controller('OrderController', function($scope, Socket) {

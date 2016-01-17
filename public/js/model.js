@@ -52,6 +52,7 @@ for (var i = 0; i < 16; i++) {
                  reservations:     []}); }
 
 function find_open_table(seats_needed) {
+    tables.sort(function(a, b) { return (Math.random() > 0.5) ? 1 : -1; });
     // for demo purposes...
     var open_tables = [];
     for (var i in tables) {

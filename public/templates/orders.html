@@ -58,12 +58,17 @@
       <span class="due">
         due in {{get_minutes(order)}}m
       </span>
+      <span class="table">
+        Table: #{{order.table.id}}
+      </span>
     </div>
     <div class="items">
       <div class="item" ng-repeat="item in order.tickets" ng-init="menuitem = item.item">
         <img class="itemImage" src="/images/food/{{menuitem.thumbnail}}"/>
         <div class="itemDetails">
 	  <h2 class="itemTitle">{{menuitem.title}}</h2>
+          <p>{{item.comments}}</p>
+
 	  <!-- <div class="itemType">{{menuitem.type}}</div> -->
 	  <!-- <div class="itemDescription">{{menuitem.description}}</div> -->
 	  <!-- <div class="itemPrice">${{menuitem.price.toFixed(2)}}</div> -->
