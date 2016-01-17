@@ -32,10 +32,6 @@
 	color: #FF5722;
 }
 
-#largeRow:hover {
-	border-bottom: 1px solid hsla(30, 78%, 65%, 0.79);
-}
-
 #cedarsLogo {
 	text-align: center;
 }
