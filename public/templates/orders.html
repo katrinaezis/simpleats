@@ -53,10 +53,10 @@
   <li class="item" ng-repeat="order in orders">
     <div class="order-head">
       <span class="start">
-        start in {{get_minutes_start(order)}}m
+        start in {{order.minutes_start}}m
       </span>
       <span class="due">
-        due in {{get_minutes(order)}}m
+        due in {{order.minutes_due}}m
       </span>
       <span class="table">
         Table: #{{order.table.id}}
