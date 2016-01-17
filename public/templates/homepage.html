@@ -1,50 +1,37 @@
-<!-- <div id="frontPage">
-	<div id="overlay">
-		<div id="content">
-			<div class="center-align white-text">logo</div>
-		</div>
-	</div>
-</div> -->
-<!-- <div id="logoTitle" class="container">
-	<h4 class="text-accent-2 center-align">No more lines, waiting, or wasted time</h4>
-	<div class="row">
-		<div class="input-field col s6">
-			<input id="numPeople" type="number" min="1">
-		    <label class="active" for="numPeople">Number of People:</label>
-		</div>
-		<div class="input-field col s6">
-			<select>
-				<input id="datePick" ng-model="time_due" ui-timepicker/>
-			</select>
-			<label for="datePick">Dine-in Time:</label>	
-		</div>
-	</div>
-</div> -->
-
 <div id="toolbar">
-	<div class="container">
-	<div>Number of People:</div><div>Dine-in Time: <input ng-model="time_due" ui-timepicker/></div>
-	</div>
+  <div class="container">
+  <div class="toolbarItem">Number of People: <select ng-change="update_stuff()" ng-model="num_people" style="display:inline-block;width: 150px;margin-bottom: 12px;color: #FF6E40;">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+  </select>
+  </div>
+  <div class="toolbarItem">Dine-in Time: <input ng-change="update_stuff()" ng-model="time_due" ui-timepicker style="color: #FF6E40"/></div>
+ </div>
 </div>
 
 <div class="layout container">
 
 	<div id="freewall" class="free-wall">
-		<div class="brick" style="width:250px; height: 600px; background-image: url(../images/restruantImg/restaurant.jpg); background-size: cover">
+		<div class="brick" style="width:250px; height: 200px; background-image: url(../images/restruantImg/restruant2.jpg); background-size: cover">
+					<a href="#/order"><span class="brickLabel">PF Chang's</span></a>
+		</div>
+		<div class="brick busy" style="width:250px; height: 600px; background-image: url(../images/restruantImg/restaurant.jpg); background-size: cover">
 			<a href="#/order"><span class="brickLabel">Beth's Cafe</span></a>
 		</div>
-		<div class="brick" style="width:250px; height: 200px; background-image: url(../images/restruantImg/restruant2.jpg); background-size: cover">
-					<a href="#/order"><span class="brickLabel">Cactus</span></a>
-		</div>
 		<div class="brick" style="width:750px; height: 600px; background-image: url(../images/restruantImg/restruant3.jpg); background-size: cover">
-					<a href="#/order"><span class="brickLabel">PF Chang's</span></a>
+					<a href="#/order"><span class="brickLabel">Cactus</span></a>
 		</div>
 		<div class="brick" style="width:500px; height: 200px; background-image: url(../images/restruantImg/restruant4.jpg); background-size: cover">
 					<a href="#/order"><span class="brickLabel">Cedar's</span></a>
 		</div>
-		<div class="brick" style="width:750px; height: 200px; background-image: url(../images/restruantImg/restruant5.jpg); background-size: cover">
+		<div class="brick busy" style="width:750px; height: 200px; background-image: url(../images/restruantImg/restruant5.jpg); background-size: cover">
 					<a href="#/order"><span class="brickLabel">The Cheesecake Factory</span></a>
 		</div>
 	</div>
-	
 </div>

@@ -323,6 +323,17 @@ vertical-align: top;
 	background-color: #FF6E40;
 	padding: 8px;
 	margin-bottom: 12px;
+	padding-bottom: 2px;
+}
+
+.toolbarItem {
+	display: inline-block;
+	padding-right: 30px;
+	padding-bottom: 8px;
+}
+
+.toolbarItem select {
+	margin-bottom: 0px !important;
 }
 
 .brick {
@@ -401,8 +412,6 @@ vertical-align: top;
 }
 
 
-
-
   .close {
       cursor: pointer;
       margin-left: 12px; }
@@ -412,14 +421,18 @@ vertical-align: top;
       cursor: pointer;
       margin-left: 12px; }
 
-     
+
+     #searchContainer {
+     	text-align: center;
+     }
 
       #search {
           border-radius: 20px;
           height: 30px;
           border: 1px solid #ddd;
+          margin: 10px 0px;
           padding-left: 10px;
-          float: right;
+         /* float: right; */
           width: 250px;
       }
       #search:focus {

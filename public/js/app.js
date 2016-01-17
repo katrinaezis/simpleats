@@ -15,8 +15,9 @@ var SEModule = angular.module('se', ['ngRoute',
 	r('/review_order', 'templates/review_order.html', 'ReviewOrderController');
 	r('/dashboard', 'templates/orders.html', 'DashboardController');
 	r('/dine_in', 'templates/dine_in.html', 'DineInController');
-    r('/thankyou', 'templates/thankyou.html', 'ThankYouController');
+    r('/thankyou', 'templates/thankyou.html', 'ThankyouController');
         r('/', 'templates/homepage.html', 'HomeController');
+                r('/demo', 'templates/demo.html', 'DemoController');
             r('/order_button', 'templates/order_button.html', 'OrderButtonController');
     
 
@@ -69,6 +70,8 @@ var SEModule = angular.module('se', ['ngRoute',
 
     .service('Order', function() {
         var order = {};
+        var num_people;
+        var time ;
 
         function set_order(o) {
             order = o;
@@ -77,7 +80,25 @@ var SEModule = angular.module('se', ['ngRoute',
         function get_order() {
             return order; }
 
+        function set_num_people(o) {
+            num_people = o;
+            return num_people; }
+
+        function get_num_people() {
+            return num_people; }
+
+        function set_time(o) {
+            time = o;
+            return time; }
+
+        function get_time() {
+            return time; }
+
         return {set:   set_order,
+                set_num_people: set_num_people,
+                get_num_people: get_num_people,
+                set_time: set_time,
+                get_time: get_time,
                 get:   get_order}; })
 
 
@@ -215,12 +236,15 @@ var SEModule = angular.module('se', ['ngRoute',
         $scope.make_order = function() {
             var order = generate_order();
             order = {"tickets":[{"item":{"type":"sandwich","title":"Pastrami","description":"house-smoked beef brisket, creole mustard, baguette, half sour pickle on the side","price":12.5,"prep_time":14,"options":[{"name":"with swiss","price":1.5,"type":"boolean"}],"thumbnail":"PF-CHANGS-APPLE-CHAI-COBBLER-sm.jpg"},"comments":"medium rare, tator tots","options":{}},{"item":{"type":"sandwich","title":"Pastrami","description":"house-smoked beef brisket, creole mustard, baguette, half sour pickle on the side","price":12.5,"prep_time":14,"options":[{"name":"with swiss","price":1.5,"type":"boolean"}],"thumbnail":"PF-CHANGS-APPLE-CHAI-COBBLER-sm.jpg"},"comments":"Give me all of the bacon and eggs you have. Do you understand?","options":{"with swiss":true}},{"item":{"type":"sandwich","title":"Pastrami","description":"house-smoked beef brisket, creole mustard, baguette, half sour pickle on the side","price":12.5,"prep_time":14,"options":[{"name":"with swiss","price":1.5,"type":"boolean"}],"thumbnail":"PF-CHANGS-APPLE-CHAI-COBBLER-sm.jpg"},"comments":"xtra mayo","options":{"with swiss":true}}],"name":"David Karn","time_due":"2016-01-17T20:00:12.622Z"};
+            order = Order.get();
+            order.name = "David Karn";
             order.time_due = new Date() - (-1000 * 60 * 18);
             console.log(order);
             connection.emit('new_order', order); }; })
 
 
     .controller('OrderController', function($scope, Socket, Order, $location) {
+    	scroll_top();
         $scope.menu_items = menu_items;
         $scope.order_in = { menuItems: [] };
         console.log(Socket);
@@ -255,7 +279,8 @@ var SEModule = angular.module('se', ['ngRoute',
         }
     })
 
-    .controller('ReviewOrderController', function($scope, Order, $location) {
+    .controller('ReviewOrderController', function($scope, Order, $location, Socket) {
+    	scroll_top();
     	
         $scope.order = Order.get();
 
@@ -273,11 +298,24 @@ var SEModule = angular.module('se', ['ngRoute',
             if (type  == 'dine_in')
                 $location.path('/dine_in');
             else
-                $location.path('/checkout'); };
-    })
+                $location.path('/checkout'); }
 
+        var connection = Socket.connect();
+        $scope.checkout = function() {
+            var order = generate_order();
+            order = {"tickets":[{"item":{"type":"sandwich","title":"Pastrami","description":"house-smoked beef brisket, creole mustard, baguette, half sour pickle on the side","price":12.5,"prep_time":14,"options":[{"name":"with swiss","price":1.5,"type":"boolean"}],"thumbnail":"PF-CHANGS-APPLE-CHAI-COBBLER-sm.jpg"},"comments":"medium rare, tator tots","options":{}},{"item":{"type":"sandwich","title":"Pastrami","description":"house-smoked beef brisket, creole mustard, baguette, half sour pickle on the side","price":12.5,"prep_time":14,"options":[{"name":"with swiss","price":1.5,"type":"boolean"}],"thumbnail":"PF-CHANGS-APPLE-CHAI-COBBLER-sm.jpg"},"comments":"Give me all of the bacon and eggs you have. Do you understand?","options":{"with swiss":true}},{"item":{"type":"sandwich","title":"Pastrami","description":"house-smoked beef brisket, creole mustard, baguette, half sour pickle on the side","price":12.5,"prep_time":14,"options":[{"name":"with swiss","price":1.5,"type":"boolean"}],"thumbnail":"PF-CHANGS-APPLE-CHAI-COBBLER-sm.jpg"},"comments":"xtra mayo","options":{"with swiss":true}}],"name":"David Karnn","time_due":"2016-01-17T20:00:12.622Z"};
+            order = Order.get();
+
+            $scope.order.name = "David Karn"
+            $scope.order.tickets = $scope.order.menuItems;
+            $scope.order.time_due = new Date() - (-1000 * 60 * 18);
+            
+            connection.emit('new_order', $scope.order);
+            console.log('tset');
+            $location.path('/thankyou')}; })
+        
     .controller('DineInController', function($scope, Order, $location) {
-    	
+    	scroll_top();
         $scope.order    = Order.get();
         $scope.checked  = false;
 
@@ -286,8 +324,42 @@ var SEModule = angular.module('se', ['ngRoute',
         
     })
 
-    .controller('HomeController', function($scope) {
-    	
+        .controller('DemoController', function($scope) {
+            })
+    .controller('ThankyouController', function($scope, Order) {
+    	scroll_top();
+        $scope.order_in = Order.get();
+        $scope.num_people = Order.get_num_people();
+        $scope.time = print_time(Order.get_time());
+    })
+    .controller('HomeController', function($scope, Order) {
+
+    	var freewallContent;
+
+    	scroll_top();
+
+        $scope.update_stuff = function() {
+            Order.set_num_people($scope.num_people);
+            Order.set_time($scope.time_due);
+            console.log(Order.get_time(), Order.get_num_people());
+            
+            
+            $("#freewall").html(freewallContent);
+            $(".busy").remove();
+            var wall = new Freewall("#freewall");
+    		wall.reset({
+    			selector: '.brick',
+    			animate: false,
+    			cellW: 260,
+    			cellH: 200,
+    			delay: 30,
+    			onResize: function() {
+    				//wall.refresh(wall.fitWidth(), wall.fitHeight());
+    			}
+    		});
+    		wall.fitZone(wall.fitWidth(), wall.fitHeight());
+        };
+        
     	$scope.time_due = new Date();
     	
     	var temp = "<div class='brick' style='width:{width}px; height: {height}px; background-image: {images}; background-size: cover'><div class='cover'></div></div>";
@@ -305,6 +377,8 @@ var SEModule = angular.module('se', ['ngRoute',
     		w = 1 + 3 * Math.random() << 0;
 			html += temp.replace(/\{height\}/g, h*200).replace(/\{width\}/g, w*250).replace("{images}", images[i]);
     	}
+    	
+    	freewallContent = $("#freewall").html();
     	//$("#freewall").html(html);
 
     	$(function() {

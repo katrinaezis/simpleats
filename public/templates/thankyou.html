@@ -7,14 +7,14 @@
 	<div class="content">
 		<h1 class = "title"> Great! </h1>
 		
-		<p> Your table for 2 will be ready at 2:30pm on July 26, 2016. </p>
+		<p> Your table for {{num_people}} will be ready at {{time}} on January 17th, 2016. </p>
 		
 		
 		
 		
 		<div class="checkoutButtons">
 		    <div>Total items: {{ order_in.menuItems.length }}</div>
-			<button class="mainBtn" ng-click="make_order()">Checkout</button>
+			<!-- -button class="mainBtn" ng-click="make_order()">Checkout</button-->
 		</div>
 	</div>
 </div>
