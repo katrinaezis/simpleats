@@ -113,11 +113,6 @@ var SEModule = angular.module('se', ['ngRoute',
         $scope.get_percent = function(order) {
             return get_percent(order.time_due); };
 
-<<<<<<< HEAD
-        // $scope.homeFun = function() {
-        // 	$location.path("/");
-        // }
-=======
         $scope.homeFun = function() {
             $location.path("/"); }
 
@@ -142,7 +137,6 @@ var SEModule = angular.module('se', ['ngRoute',
             if (time <= 5) {
                 color = [255,115,71, 1 - (time / 50)];
                 return 'rgba(' + color.join(",") + ')'; }};
->>>>>>> 2b77fadde69d76731df19f41684577e9130b56da
 
         function process_orders() {
             $scope.orders.map(function(order) {
