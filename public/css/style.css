@@ -72,7 +72,7 @@ h1, h2, h3, h4 {
 
 
 body {
-	background-color: #FF5722;
+	
 	color: #675d53;
 	font-family: lato, PT Sans, Myriad Pro, Arial,Helvetica,sans-serif;
 }
@@ -263,18 +263,11 @@ vertical-align: top;
   }
 }
 
-body {
-    text-align: center; 
-}
-    
-    
-#wrapper {
-	background-color: white;
+.wrapper {
     max-width: 970px;
-    text-align: left;
     margin: auto; }
     
-#wrapper #header {
+#header {
 	text-align: center;
 	background-color: #FF5722;
   padding-top: 12px;
@@ -305,7 +298,7 @@ body {
 
 
 @media screen and (max-width: 550px) {
-	#wrapper #header {
+	 #header {
 	  padding-top: 8px;
   		padding-bottom: 11px;
 	}
