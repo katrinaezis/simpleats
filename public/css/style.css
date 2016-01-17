@@ -74,7 +74,7 @@ h1, h2, h3, h4 {
 body {
 	background-color: #FF5722;
 	color: #675d53;
-	font-family: PT Sans, Myriad Pro, Arial,Helvetica,sans-serif;
+	font-family: lato, PT Sans, Myriad Pro, Arial,Helvetica,sans-serif;
 }
 
 .items {
@@ -215,7 +215,7 @@ body {
 
     .order-item {
         width: 32%;
-            font-size: 13px;
+            font-size: 14px;
         display:inline-block;
 /*        border-right: 1px solid #f4f4f4;*/
 min-height: 95px;
@@ -366,3 +366,28 @@ body {
 }
 
 
+
+
+  .close {
+      cursor: pointer;
+      margin-left: 12px; }
+
+      .close:hover {
+          color: #f05423;
+      cursor: pointer;
+      margin-left: 12px; }
+
+     
+
+      #search {
+          border-radius: 20px;
+          height: 30px;
+          border: 1px solid #ddd;
+          padding-left: 10px;
+          float: right;
+          width: 250px;
+      }
+      #search:focus {
+          box-shadow: 0 1px 0 0 #aaa!important;
+/*          box-shadow: none!important;*/
+          border-bottom: 1px solid #f5f5f5!important; }

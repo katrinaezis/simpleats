@@ -1,12 +1,18 @@
+<div id="header">
+  <img id="logo" src="/logo.png" />
+  <input type="text" id="search"  placeholder="search"
+         ng-model="query"/>
+</div>
+
 <center>
   <div class="column left-col">
   <div id ="orderList">
-    <div  id="fullOrder" ng-repeat="order in starting_orders()"  class="row">
+    <div  id="fullOrder" ng-repeat="order in orders_col(0)"  class="row">
       <div id="innerContent" class="">
 	<div id="titleTimer" class="time time-{{order.minutes_start}}"
              style="background-color: {{background_color(order.minutes_start)}}">
 	  <div class="col s6">Table {{order.table.id}} ({{order.name.split(" ")[1]}})</div>
-	  <div id="timer" class="col s6 right-align">start in <strong>{{order.minutes_start}}m </strong></div>
+	  <div id="timer" class="col s6 right-align">start in <strong>{{order.minutes_start}}m </strong>, serve at <strong>{{print_time(order)}}</strong>  <i class="close fa fa-times" ng-click="close(order)"></i></div>
 	</div>
         <div id="order-items">
 	  <div class="order-item" ng-repeat="item in order.tickets" ng-init="menuitem = item.item">
@@ -20,12 +26,12 @@
 </div>
 <div class="column right-col">
   <div id ="orderList">
-    <div  id="fullOrder" ng-repeat="order in cooking_orders()"  class="row">
+    <div  id="fullOrder" ng-repeat="order in orders_col(1)"  class="row">
       <div id="innerContent" class="">
-	<div id="titleTimer" class="time time-{{order.minutes_due}}"
-             style="background-color: {{background_color(order.minutes_due)}}">
+	<div id="titleTimer" class="time time-{{order.minutes_start}}"
+             style="background-color: {{background_color(order.minutes_start)}}">
 	  <div class="col s6">Table {{order.table.id}} ({{order.name.split(" ")[1]}})</div>
-	  <div id="timer" class="col s6 right-align">ready in <strong>{{order.minutes_due}}m</strong></div>
+	  <div id="timer" class="col s6 right-align">start in <strong>{{order.minutes_start}}m</strong>, serve at <strong>{{print_time(order)}}</strong> <i class="close fa fa-times" ng-click="close(order)"></i></div>
 	</div>
         <div id="order-items">
 	  <div class="order-item" ng-repeat="item in order.tickets" ng-init="menuitem = item.item">
