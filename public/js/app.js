@@ -9,13 +9,13 @@ var SEModule = angular.module('se', ['ngRoute',
 		    templateUrl:  template,
 		    controller:   controller}); }
 
-	r('/', 'templates/homepage.html', 'HomeController');
 	r('/order', 'templates/make_order.html', 'OrderController');
+	r('/review_order', 'templates/review_order.html', 'ReviewOrderController');
 	r('/dashboard', 'templates/orders.html', 'DashboardController');
         
 	$routeProvider
 	    .otherwise({
-		redirectTo: '/'});
+		redirectTo: '/order'});
     })
 
     .factory('Socket', function (socketFactory) {
@@ -59,6 +59,19 @@ var SEModule = angular.module('se', ['ngRoute',
 		    .success(success || function() {})
 		    .error(failure || function() {}) }}; 
     })
+
+    .service('Order', function() {
+        var order = {};
+
+        function set_order(o) {
+            order = o;
+            return order; }
+
+        function get_order() {
+            return order; }
+
+        return {set:   set_order,
+                get:   get_order}; })
 
     .controller('DashboardController', function($scope, Socket) {
         var connection = Socket.connect(function(x) { console.log('connected', x); });
@@ -115,7 +128,7 @@ var SEModule = angular.module('se', ['ngRoute',
         timer();
     })
 
-    .controller('OrderController', function($scope, Socket) {
+    .controller('OrderController', function($scope, Socket, Order, $location) {
         $scope.menu_items = menu_items;
         $scope.order_in = { menuItems: [] };
         console.log(Socket);
@@ -139,8 +152,17 @@ var SEModule = angular.module('se', ['ngRoute',
         	}
         	return q;
         }
+
+        $scope.checkout = function() {
+            Order.set(order_in);
+            $location.path('/review_order'); };
     })
 
+    .controller('ReviewOrderController', function($scope, Order, $location) {
+        $scope.order = Order.get();
+
+    })
+                
     .controller('HomeController', function($scope) {
         $scope.test = 123;
 
