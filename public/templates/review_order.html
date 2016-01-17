@@ -1,55 +1,29 @@
-<div class="page cactus">
-
-	<header>
-		<span class="logo"></span>
-	</header>
-	
-	<div class="content">
-	
-<div id ="orderList" class="container">
-  <h1>Review Order</h1>
-  <table>
-    <thead>
-      <tr>
-        <td>Item</td>
-        <!--td>Qty.</td-->
-        <td>Price</td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="item in order.menuItems" id="fullOrder" class="row">
-        <td>
-          <strong>{{item.item.title}}</strong><br />
-          {{item.comments}}
-        </td>
-        <td>
-          ${{item.item.price.toFixed(2)}}
-        </td>
-      </tr>
-      <tr>
-        <td style="text-align: right">Subotal</td>
-        <!--td>Qty.</td-->
-        <td>${{subtotal.toFixed(2)}}</td>
-      </tr>
-      <tr>
-        <td style="text-align: right">Tax</td>
-        <!--td>Qty.</td-->
-        <td>${{tax.toFixed(2)}}</td>
-      </tr>
-      <tr>
-        <td style="text-align: right">Total</td>
-        <!--td>Qty.</td-->
-        <td>${{total.toFixed(2)}}</td>
-      </tr>
-    </tbody>
-  </table>
-  <div id="prep_time">
-    Your order will take {{prep_time}} min to prepare from the time you finish placing your order.
+<div id="restruantLogo" class="jumbotron">
+  <div id="cedarsLogo">
+    <img src="../images/Cedars-logo.png">
   </div>
-  <div class="checkoutButtons">
-    <button class="mainBtn" ng-click="checkout('dine_in')">Checkout</button>
-    <!-- -button class="mainBtn" ng-click="checkout('dine_out')">Dine out</button-->
+</div>
+<div id="reviewOrder" class="container">
+  <h3 class="deep-orange-text">Review Order</h3>
+  <div class="row">
+    <div class="col s4 left-align">Item</div>
+    <div class="col s8 left-align">Price</div>
+    <hr>
+  </div>
+  <div ng-repeat="item in order.menuItems" class="row">
+    <div class="col s4 left-align">{{item.item.title}}</div>
+    <div class="col s8 left-align">{{item.item.price.toFixed(2)}}</div>
+  </div>
+</div>
+<div class="container">
+  <h6>Subtotal: {{subtotal.toFixed(2)}}</h6>
+  <h6>Tax: {{tax.toFixed(2)}}</h6>
+  <h4>Total: {{total.toFixed(2)}}</h6>
+  <h5 class="center-align">Your order will take {{prep_time}} min to prepare from the time you finish placing your order.</h6>
+</div>
+  <div id="checkoutButton">
+    <button class="btn waves-effect waves-light deep-orange white-text" type= ng-click="checkout('dine_in')">checkout
+    </button>
   </div>
 </div>
 
-</div>
