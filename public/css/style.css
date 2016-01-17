@@ -167,6 +167,10 @@ body {
     user-select: none;
 }
 
+.title {
+	font-size: 3em;
+}
+
 @media screen and (max-width: 550px) {
 	
 	.addToOrderButton button span{
