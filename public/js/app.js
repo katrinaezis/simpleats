@@ -137,9 +137,13 @@ var SEModule = angular.module('se', ['ngRoute',
         $scope.homeFun = function() {
             $location.path("/"); }
 
+        function matches(order, query) {
+            return order.name.toLowerCase().match((query || "").toLowerCase()); }
+
         $scope.starting_orders = function() {
             return $scope.orders.filter(function(o) {
-                return o.minutes_start > 0  && o.minutes_start > -3; })
+                return o.minutes_start > 0  && o.minutes_start > -3
+                    && matches(o, $scope.query); })
                 .sort(function(a, b) {
                     return a.minutes_start - b.minutes_start; }); };
 
