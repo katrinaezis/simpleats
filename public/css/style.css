@@ -18,6 +18,12 @@
 
 }
 
+#checkoutButton {
+	float: right;
+	margin-right: 10%;
+	margin-bottom: 10%;
+}
+
 .col > a {
 	color: #FF5722;
 }
