@@ -164,7 +164,7 @@ function start_time(order) {
 
 function longest_prep_time(order) {
     var time = 0;
-    order.tickets.map(function(item) {
+    (order.tickets || order.menuItems).map(function(item) {
         time = Math.max(item.item.prep_time, time); });
     return time * 1000 * 60; }
 

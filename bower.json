@@ -15,6 +15,10 @@
     "angular-ui-utils": "~3.0.0",
     "jquery-ui": "~1.11.4",
     "angular-socket-io": "~0.7.0",
-    "moment": "~2.11.1"
+    "moment": "~2.11.1",
+    "jquery-timepicker": "*",
+    "jquery-timepicker-jt": "~1.8.9",
+    "angular-ui-timepicker": "~0.2.0",
+    "angular-jquery-timepicker": "~0.10.0"
   }
 }
