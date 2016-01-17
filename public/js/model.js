@@ -80,8 +80,8 @@ function generate_comment() {
     comment.push(comments[Math.floor(Math.random() * comments.length)]);
     return comment.join(","); }
 
-function generate_ticket() {
-    var item      = menu_items[Math.floor(Math.random() * menu_items.length)];
+function generate_ticket(menu_item, comment) {
+    var item      = menu_item || menu_items[Math.floor(Math.random() * menu_items.length)];
     var options   = {};
 
     (item.options || []).map(function(option) {
@@ -89,7 +89,7 @@ function generate_ticket() {
             options[option.name] = true; });
     
     return {item: item,
-            comments: generate_comment(),
+            comments: comment || generate_comment(),
             options: options}; }
 
 function generate_order() {

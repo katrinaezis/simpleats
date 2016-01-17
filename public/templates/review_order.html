@@ -9,71 +9,47 @@
 	</div>
 </nav>
 <div id ="orderList" class="container">
-	<div ng-repeat="order in orders" id="fullOrder" class="row">
-		<div id="innerContent" class="section col s12">
-			<div id="titleTimer">
-				<div class="row container">
-					<div class="col s6">Table {{number}}</div>
-					<div id="timer" class="col s6">{{timer}} words</div>
-				</div>
-			</div>
-			<div id="orderItems">
-				<ul>
-					<li ng-repeat="items in order">
-						<div class="col s3 center-align">{{order.title}}</div>
-						<div class="col s9">{{specs}} potato</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
-<div id="orderList" class="container">
-	<div id="orderRow" class="row">
-		<div ng-repeat="order in orders" class="col s12 section">
-			<div id="innerContent" class="row">
-				<div class="col s6">{{order.title}}</div>
-				<div class="col s6">{{order.time_due}} some time</div>
-			</div>
-		</div>
-		<div class="divider"></div>
-	</div>
-</div>
-<!-- <div ng-repeat="order in orders">
-  <h1> an order</h1>
-  {{order.time_due}}
-  <div ng-repeat="ticket in order.tickets">
-    {{ticket.item.title}}
+  <h1>Review Order</h1>
+  <table>
+    <thead>
+      <tr>
+        <td>Item</td>
+        <!--td>Qty.</td-->
+        <td>Price</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in order.menuItems" id="fullOrder" class="row">
+        <td>
+          <strong>{{item.item.title}}</strong><br />
+          {{item.comments}}
+        </td>
+        <td>
+          ${{item.item.price.toFixed(2)}}
+        </td>
+      </tr>
+      <tr>
+        <td style="text-align: right">Subotal</td>
+        <!--td>Qty.</td-->
+        <td>${{subtotal.toFixed(2)}}</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">Tax</td>
+        <!--td>Qty.</td-->
+        <td>${{tax.toFixed(2)}}</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">Total</td>
+        <!--td>Qty.</td-->
+        <td>${{total.toFixed(2)}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div id="prep_time">
+    Your order will take {{prep_time}} min to prepare from the time you finish placing your order.
   </div>
-</div> -->
-
-<h1>Pending Orders</h1>
-
-<ul class="items orders">
-  <li class="item" ng-repeat="order in orders">
-    <div class="order-head">
-      <span class="start">
-        start in {{order.minutes_start}}m
-      </span>
-      <span class="due">
-        due in {{order.minutes_due}}m
-      </span>
-      <span class="table">
-        Table: #{{order.table.id}}
-      </span>
-    </div>
-    <div class="items">
-      <div class="item" ng-repeat="item in order.tickets" ng-init="menuitem = item.item">
-        <img class="itemImage" src="/images/food/{{menuitem.thumbnail}}"/>
-        <div class="itemDetails">
-	  <h2 class="itemTitle">{{menuitem.title}}</h2>
-          <p>{{item.comments}}</p>
-
-	  <!-- <div class="itemType">{{menuitem.type}}</div> -->
-	  <!-- <div class="itemDescription">{{menuitem.description}}</div> -->
-	  <!-- <div class="itemPrice">${{menuitem.price.toFixed(2)}}</div> -->
-        </div>
-      </div>
-    </div>
-  </li>
-</ul>
+  <div id="actions">
+    <button ng-click="checkout('dine_in')">Dine in</button>
+    <button ng-click="checkout('dine_out')">Dine out</button>
+  </div>
+</div>
