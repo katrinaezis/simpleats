@@ -66,7 +66,6 @@ var SEModule = angular.module('se', ['ngRoute',
 		    .error(failure || function() {}) }}; 
     })
 
-<<<<<<< HEAD
     .service('Order', function() {
         var order = {};
 
@@ -80,10 +79,8 @@ var SEModule = angular.module('se', ['ngRoute',
         return {set:   set_order,
                 get:   get_order}; })
 
-    .controller('DashboardController', function($scope, Socket) {
-=======
+
     .controller('DashboardController', function($scope, Socket, $location) {
->>>>>>> 6bc7d5a35589bef7760774c5cb97efb29d495079
         var connection = Socket.connect(function(x) { console.log('connected', x); });
         var count      = Math.floor(Math.random() * 8) + 5;
 
