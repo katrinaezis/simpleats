@@ -13,7 +13,7 @@
 		
 		
 		<div class="checkoutButtons">
-		    <div>Total items: {{ order_in.menuItems.length }}</div>
+		    <div>Total items: {{ order_in ? order_in.menuItems.length : 1 }}</div>
 			<!-- -button class="mainBtn" ng-click="make_order()">Checkout</button-->
 		</div>
 	</div>

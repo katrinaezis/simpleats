@@ -7,7 +7,10 @@
 <div id="cedarsContent" class="container">
 	<h4>Pick from our amazing selection of items:</h4>
 	<div class="container">
-		<div id="largeRow" class="row" ng-repeat="menuitem in menu_items">
+	  <div id="largeRow" class="row" ng-repeat="menuitem in menu_items"
+               ng-click="add_to_order(menuitem)"
+               style="cursor:pointer">
+
 		    <!-- <img class="itemImage" src="/images/food/{{menuitem.thumbnail}}"/>-->
 			<div class="col s6 left-align">
 				{{menuitem.title}}
@@ -17,7 +20,8 @@
 				${{menuitem.price.toFixed(2)}}
 			</div>
 			<div class="col s3 left-align">
-				<div  class="itemQuantity" ng-if="orderItemQuantity(menuitem.title) > 0">{{ orderItemQuantity(menuitem.title) }}</div><span ng-click="add_to_order(menuitem)"><i class="fa fa-plus-square-o text-orange"></i></div>
+			  <div  class="itemQuantity"
+                                ng-if="orderItemQuantity(menuitem.title) > 0">{{ orderItemQuantity(menuitem.title) }}</div><span><i class="fa fa-plus-square-o text-orange"></i></div>
 			</div>
 		</div>
 

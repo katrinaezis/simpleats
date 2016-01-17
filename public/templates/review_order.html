@@ -7,12 +7,12 @@
   <h3 class="deep-orange-text">Review Order</h3>
   <div class="row">
     <div class="col s4 left-align">Item</div>
-    <div class="col s8 left-align">Price</div>
+    <div class="col s8 right-align" style="padding-right:30px">Price</div>
     <hr>
   </div>
   <div ng-repeat="item in order.menuItems" class="row">
     <div class="col s4 left-align">{{item.item.title}}</div>
-    <div class="col s8 left-align">{{item.item.price.toFixed(2)}}</div>
+    <div class="col s8 right-align" style="padding-right:30px">{{item.item.price.toFixed(2)}}</div>
   </div>
 </div>
 <div class="container">
@@ -22,7 +22,7 @@
   <h5 class="center-align">Your order will take {{prep_time}} min to prepare from the time you finish placing your order.</h6>
 </div>
   <div id="checkoutButton">
-    <button class="btn waves-effect waves-light deep-orange white-text" type= ng-click="checkout('dine_in')">checkout
+    <button class="btn waves-effect waves-light deep-orange white-text" ng-click="checkout('dine_in')">checkout
     </button>
   </div>
 </div>
