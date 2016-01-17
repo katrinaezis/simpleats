@@ -21,7 +21,7 @@ var SEModule = angular.module('se', ['ngRoute',
 
 	$routeProvider
 	    .otherwise({
-		redirectTo: '/order'});
+		redirectTo: '/dashboard'});
     })
 
     .factory('Socket', function (socketFactory) {
