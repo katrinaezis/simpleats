@@ -17,6 +17,7 @@ var SEModule = angular.module('se', ['ngRoute',
 	r('/dine_in', 'templates/dine_in.html', 'DineInController');
     r('/thankyou', 'templates/thankyou.html', 'ThankYouController');
         r('/', 'templates/homepage.html', 'HomeController');
+                r('/demo', 'templates/demo.html', 'DemoController');
             r('/order_button', 'templates/order_button.html', 'OrderButtonController');
     
 

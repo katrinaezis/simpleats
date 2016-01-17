@@ -294,8 +294,6 @@ body {
       cursor: pointer;
       margin-left: 12px; }
 
-      #header.home {display: none; }
-
       #search {
           border-radius: 20px;
           height: 30px;
