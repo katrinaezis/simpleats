@@ -4,6 +4,48 @@
     box-sizing: border-box;
 }
 
+#restruantLogo {
+	/*background-image: url(../images/Cedars-logo.png);
+	background-size: contain;
+	padding: 20%;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin-bottom: 0px;*/
+	background-image: url(../images/indian.jpg);
+	background-size: cover;
+	margin-bottom: 0px;
+	padding: 5%;
+
+}
+
+.col > a {
+	color: #FF5722;
+}
+
+.col > a:visited {
+	color: #FF5722;
+}
+
+#largeRow:hover {
+	border-bottom: 1px solid hsla(30, 78%, 65%, 0.79);
+}
+
+#cedarsLogo {
+	text-align: center;
+}
+
+#cedarsLogo > img {
+	max-width: 50%;
+	height: auto;
+	width: auto\9;
+}
+
+#cedarsContent > div {
+	display: block;
+	margin: auto;
+	text-align: center;
+}
+
 #titleTimer {
   color: #333;
     padding-top: 4px;
@@ -24,7 +66,7 @@ h4 {
 	color: #FF6E40;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5, h6 {
 	font-family: 'Raleway', sans-serif;
 }
 
@@ -273,7 +315,7 @@ vertical-align: top;
   padding-top: 12px;
   padding-bottom: 14px;
   /*border-top: 6px solid #472c75;*/ 
-  border-bottom: 1px dashed #472c75; }
+}
 
 #toolbar {
 	font-size: 1.5em;

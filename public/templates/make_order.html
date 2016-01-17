@@ -1,8 +1,28 @@
+<div id="restruantLogo" class="jumbotron">
+	<div id="cedarsLogo">
+		<img src="../images/Cedars-logo.png">
+	</div>
+
+</div>
+<div id="cedarsContent" class="container">
+	<h4>Pick from our amazing selection of items:</h4>
+	<div class="container">
+		<div id="largeRow" class="row" ng-repeat="menuitem in menu_items">
+			<div class="col s6 left-align">
+				{{menuitem.title}}
+			</div>
+			<div class="col s3">
+				{{menuitem.price.toFixed(2)}}
+			</div>
+			<div class="col s3 left-align">
+				<a href="#"><i class="fa fa-plus-square-o text-orange"></i></a>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="page cactus">
 
-	<header>
-		<span class="logo"></span>
-	</header>
 	
 	<div class="content">
 		Pick from our amazing selection of items:
