@@ -130,10 +130,10 @@ function find_and_reserve_table(order) {
 function generate_comment() {
     var comments = ['extra parsley', 'light mayo', 'all the bacon and eggs you have', 'medium rare', 'no potatos', 'lots of potatos', false, false, false, false, false];
     var comment = [];
+
     comment.push(comments[Math.floor(Math.random() * comments.length)]);
     comment.push(comments[Math.floor(Math.random() * comments.length)]);
-
-
+    
     return comment.filter(return_it).join(", "); }
 
 function generate_ticket(menu_item, comment) {
@@ -144,15 +144,15 @@ function generate_ticket(menu_item, comment) {
         if (Math.random() > 0.6)
             options[option.name] = true; });
     
-    return {item: item,
-            comments: comment || generate_comment(),
-            options: options}; }
+    return {item:      item,
+            comments:  generate_comment(),
+            options:   options}; }
 
 function generate_order() {
     var length = Math.ceil(Math.random() * 4);
     var order  = {tickets:    [],
                   name:       names.shift(),
-                  time_due:   new Date(new Date() - 1 + 1000 * 60 * (Math.random() * 60 - 4))};
+                  time_due:   new Date(new Date() - 1 + 1000 * 60 * (Math.random() * 30 + 18))};
     
     for (var i = 0; i < length; i++) 
         order.tickets.push(generate_ticket());
@@ -164,7 +164,7 @@ function start_time(order) {
 
 function longest_prep_time(order) {
     var time = 0;
-    order.tickets.map(function(item) {
+    (order.tickets || order.menuItems).map(function(item) {
         time = Math.max(item.item.prep_time, time); });
     return time * 1000 * 60; }
 

@@ -1,13 +1,11 @@
-<nav>
-	<div class="nav-wrapper teal darken-2">
-		<a href="#" class="brand-logo center"><img id="logo" src="images/simpl-logo.png"></a>
-		<!-- <ul id="nav-mobile" class="left hide-on-med-and-down">
-			<li><a href="sass.html">Sass</a></li>
-			<li><a href="badges.html">Components</a></li>
-			<li><a href="collapsible.html">JavaScript</a></li>
-		</ul> -->
-	</div>
-</nav>
+<div class="page cactus">
+
+	<header>
+		<span class="logo"></span>
+	</header>
+	
+	<div class="content">
+	
 <div id ="orderList" class="container">
   <h1>Review Order</h1>
   <table>
@@ -48,8 +46,10 @@
   <div id="prep_time">
     Your order will take {{prep_time}} min to prepare from the time you finish placing your order.
   </div>
-  <div id="actions">
-    <button ng-click="checkout('dine_in')">Dine in</button>
-    <button ng-click="checkout('dine_out')">Dine out</button>
+  <div class="checkoutButtons">
+    <button class="mainBtn" ng-click="checkout('dine_in')">Dine in</button>
+    <button class="mainBtn" ng-click="checkout('dine_out')">Dine out</button>
   </div>
+</div>
+
 </div>

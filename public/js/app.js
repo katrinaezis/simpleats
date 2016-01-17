@@ -1,6 +1,8 @@
 
 var SEModule = angular.module('se', ['ngRoute',
-                                      'btford.socket-io'])
+                                      'btford.socket-io',
+                                      'ui.timepicker'])
+                                      
 
     .config(function($routeProvider) {
 	function r(path, template, controller) {
@@ -14,12 +16,13 @@ var SEModule = angular.module('se', ['ngRoute',
 	r('/dashboard', 'templates/orders.html', 'DashboardController');
 	r('/dine_in', 'templates/dine_in.html', 'DineInController');
     r('/thankyou', 'templates/thankyou.html', 'ThankYouController');
-    r('/', 'templates/homepage.html', 'HomeController');
+        r('/', 'templates/homepage.html', 'HomeController');
+            r('/order_button', 'templates/order_button.html', 'OrderButtonController');
     
 
 	$routeProvider
 	    .otherwise({
-		redirectTo: '/order'});
+		redirectTo: '/dashboard'});
     })
 
     .factory('Socket', function (socketFactory) {
@@ -80,9 +83,27 @@ var SEModule = angular.module('se', ['ngRoute',
 
     .controller('DashboardController', function($scope, Socket, $location) {
         var connection = Socket.connect(function(x) { console.log('connected', x); });
-        var count      = Math.floor(Math.random() * 8) + 5;
+        var count      = 5;
 
         $scope.orders  = [];
+
+        $scope.print_time = function(order) {
+            var time = new Date(order.time_due);
+
+            var hour    = time.getHours().toString();
+            var minutes = time.getMinutes().toString();
+            if (hour.length == 1) hour = "0" + hour;
+            if (minutes.length == 1) minutes = "0" + minutes;
+            
+            return hour + ":" + minutes; }
+
+        $scope.close   = function(order) {
+            var orders = $scope.orders;
+            var ret    = [];
+            for (var i in orders)
+                if (orders[i] != order)
+                    ret.push(orders[i]);
+            $scope.orders = ret; };
         
         function get_tickets() {
             return $scope.orders.map(function(order) {
@@ -95,7 +116,7 @@ var SEModule = angular.module('se', ['ngRoute',
 
         function add_order(order) {
             $scope.$apply(function() {
-                $scope.orders.push(order);
+                $scope.orders.push(process_an_order(order));
                 process_orders(); }); }
         
         connection.on('new_order', function(order) {
@@ -103,7 +124,7 @@ var SEModule = angular.module('se', ['ngRoute',
 
         for (;count>0;count--)
             $scope.orders.push(generate_order());
-
+        console.log($scope.orders);
         $scope.get_minutes = function(order) {
             return get_difference(order.time_due); };
 
@@ -116,11 +137,27 @@ var SEModule = angular.module('se', ['ngRoute',
         $scope.homeFun = function() {
             $location.path("/"); }
 
+        function matches(order, query) {
+            return order.name.toLowerCase().match((query || "").toLowerCase()); }
+
         $scope.starting_orders = function() {
             return $scope.orders.filter(function(o) {
-                return o.minutes_start > 0  && o.minutes_start > -3; })
+                return o.minutes_start > 0  && o.minutes_start > -3
+                    && matches(o, $scope.query); })
                 .sort(function(a, b) {
                     return a.minutes_start - b.minutes_start; }); };
+
+        $scope.orders_col = function(col) {
+            var order = $scope.starting_orders();
+            console.log(order)
+            var ret   = [];
+
+            var add = col == 0;
+            for (var i in order) {
+                if (add)
+                    ret.push(order[i]);
+                add = !add; }
+            return ret; }
 
         $scope.cooking_orders = function() {
             return $scope.orders.filter(function(o) {
@@ -131,20 +168,34 @@ var SEModule = angular.module('se', ['ngRoute',
         $scope.background_color = function(time) {
             var color;
             time = Math.abs(time);
+            var color1 = [71,44,117];
+            var color2 = [240,84,35];
+            var pos;
+            var in_between = function (color_index, time) {
+                var col1 = color1[color_index];
+                var col2 = color2[color_index];
+                return (col1 + ((col2 - col1) * (1 -  (time / 20)))).toFixed(); }
+            
             if (time > 5) {
-                color = [193,249,70, 1 - (time / 50)];
+                color = [in_between(0, time),
+                         in_between(1, time),
+                         in_between(2, time), 0.66 - (time / 65)];
+                console.log(color);
                 return 'rgba(' + color.join(",") + ')'; }
             if (time <= 5) {
                 color = [255,115,71, 1 - (time / 50)];
                 return 'rgba(' + color.join(",") + ')'; }};
 
         function process_orders() {
-            $scope.orders.map(function(order) {
-                if (!order.table)
-                    find_and_reserve_table(order);
+            $scope.orders.map(process_an_order); }
+        
+        function process_an_order(order) {
+            if (!order.table)
+                find_and_reserve_table(order);
                 
-                order.minutes_start = $scope.get_minutes_start(order);
-                order.minutes_due   = $scope.get_minutes(order); }); }
+            order.minutes_start = $scope.get_minutes_start(order);
+            order.minutes_due   = $scope.get_minutes(order);
+            return order; }
 
         var run = 0;
         function timer() {
@@ -158,6 +209,17 @@ var SEModule = angular.module('se', ['ngRoute',
         timer();
     })
 
+
+    .controller('OrderButtonController', function($scope, Socket, Order, $location) {
+        var connection = Socket.connect();
+        $scope.make_order = function() {
+            var order = generate_order();
+            order = {"tickets":[{"item":{"type":"sandwich","title":"Pastrami","description":"house-smoked beef brisket, creole mustard, baguette, half sour pickle on the side","price":12.5,"prep_time":14,"options":[{"name":"with swiss","price":1.5,"type":"boolean"}],"thumbnail":"PF-CHANGS-APPLE-CHAI-COBBLER-sm.jpg"},"comments":"medium rare, tator tots","options":{}},{"item":{"type":"sandwich","title":"Pastrami","description":"house-smoked beef brisket, creole mustard, baguette, half sour pickle on the side","price":12.5,"prep_time":14,"options":[{"name":"with swiss","price":1.5,"type":"boolean"}],"thumbnail":"PF-CHANGS-APPLE-CHAI-COBBLER-sm.jpg"},"comments":"Give me all of the bacon and eggs you have. Do you understand?","options":{"with swiss":true}},{"item":{"type":"sandwich","title":"Pastrami","description":"house-smoked beef brisket, creole mustard, baguette, half sour pickle on the side","price":12.5,"prep_time":14,"options":[{"name":"with swiss","price":1.5,"type":"boolean"}],"thumbnail":"PF-CHANGS-APPLE-CHAI-COBBLER-sm.jpg"},"comments":"xtra mayo","options":{"with swiss":true}}],"name":"David Karn","time_due":"2016-01-17T20:00:12.622Z"};
+            order.time_due = new Date() - (-1000 * 60 * 18);
+            console.log(order);
+            connection.emit('new_order', order); }; })
+
+
     .controller('OrderController', function($scope, Socket, Order, $location) {
         $scope.menu_items = menu_items;
         $scope.order_in = { menuItems: [] };
@@ -170,7 +232,7 @@ var SEModule = angular.module('se', ['ngRoute',
         $scope.make_order = function() {
             var order = generate_order();
             console.log(order);
-            connection.emit('new_order', $scope.order_in); 
+            connection.emit('new_order', order); 
         };
         $scope.orderItemQuantity = function(menuItemTitle) {
         	var q = 0;
@@ -194,6 +256,7 @@ var SEModule = angular.module('se', ['ngRoute',
     })
 
     .controller('ReviewOrderController', function($scope, Order, $location) {
+    	
         $scope.order = Order.get();
 
         $scope.subtotal = 0;
@@ -214,6 +277,7 @@ var SEModule = angular.module('se', ['ngRoute',
     })
 
     .controller('DineInController', function($scope, Order, $location) {
+    	
         $scope.order    = Order.get();
         $scope.checked  = false;
 
@@ -223,6 +287,9 @@ var SEModule = angular.module('se', ['ngRoute',
     })
 
     .controller('HomeController', function($scope) {
+    	
+    	$scope.time_due = new Date();
+    	
     	var temp = "<div class='brick' style='width:{width}px; height: {height}px; background-image: {images}; background-size: cover'><div class='cover'></div></div>";
     	var images = [
     		"url(../images/restruantImg/restaurant.jpg)",
@@ -238,7 +305,7 @@ var SEModule = angular.module('se', ['ngRoute',
     		w = 1 + 3 * Math.random() << 0;
 			html += temp.replace(/\{height\}/g, h*200).replace(/\{width\}/g, w*250).replace("{images}", images[i]);
     	}
-    	$("#freewall").html(html);
+    	//$("#freewall").html(html);
 
     	$(function() {
     		var wall = new Freewall("#freewall");
@@ -249,7 +316,7 @@ var SEModule = angular.module('se', ['ngRoute',
     			cellH: 200,
     			delay: 30,
     			onResize: function() {
-    				wall.refresh(wall.fitWidth(), wall.fitHeight());
+    				//wall.refresh(wall.fitWidth(), wall.fitHeight());
     			}
     		});
     		wall.fitZone(wall.fitWidth(), wall.fitHeight());

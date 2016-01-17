@@ -1,58 +1,70 @@
 <!DOCTYPE html>
 <html lang="en"   id="ng-app"   xmlns:ng="http://angularjs.org"  ng-app="se">
-    <head>
-    	<meta charset="utf-8" />
+  <head>
+    <meta charset="utf-8" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Simpleats</title>
+    
+    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
 
-    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    	<title>Simpleats</title>
+    
+    <!-- Vendor Styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,900italic,900,700italic,700,400italic,300italic,300,100italic,100">
+    
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <script src="https://apis.google.com/js/client:platform.js?publisherid=" async defer></script>
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+                <script src="/bower_components/angular-jquery-timepicker/src/timepickerdirective.min.js"></script>
+           
 
-    	<link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
+    <!-- Materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <script src="freewall-master/freewall.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    
+    
+    <script src="/bower_components/moment/min/moment.min.js"></script>
+    <script src="/bower_components/angular-socket-io/socket.min.js"></script>
+    <script src="/bower_components/jquery-timepicker-jt/jquery.timepicker.min.js"></script>
 
 
-    	<!-- Vendor Styles -->
-    	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,900italic,900,700italic,700,400italic,300italic,300,100italic,100">
-            
-            <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-            <script src="/bower_components/jquery-ui/jquery-ui.min.js"></script>
-            <script src="https://apis.google.com/js/client:platform.js?publisherid=" async defer></script>
-            <script src="/bower_components/angular/angular.min.js"></script>
-            <script src="/bower_components/angular-route/angular-route.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.js"></script>
-<script src="/socket.io/socket.io.js"></script>
-
-        <!-- Materialize -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-        <script src="freewall-master/freewall.js"></script>
-
-<script src="/bower_components/moment/min/moment.min.js"></script>
-            <script src="/bower_components/angular-socket-io/socket.min.js"></script>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.css" />
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-            <link rel="stylesheet"
-                  href="bower_components/jquery-ui/themes/ui-lightness/jquery-ui.min.css"
-                  />
-            <link rel="stylesheet" href="bower_components/jquery-ui/themes/ui-lightness/theme.css" />
-            <link rel="stylesheet" href="/css/style.css" />
-            <link rel="stylesheet" href="/css/cactus.css" />
-            <script src="/js/ang_utils.js"></script>
-            <script src="/js/utils.js"></script>
-            <script src="/js/model.js"></script>
-            <script src="/js/app.js"></script>
-    </head>
-
+    <script src="freewall-master/freewall.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="bower_components/jquery-ui/themes/ui-lightness/jquery-ui.min.css"
+          />
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/ui-lightness/theme.css" />
+     <link rel="stylesheet" href="bower_components/jquery-timepicker-jt/jquery.timepicker.css" />
+            <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/cactus.css" />
+    <script src="/js/ang_utils.js"></script>
+    <script src="/js/utils.js"></script>
+    <script src="/js/model.js"></script>
+    <script src="/js/app.js"></script>
+  </head>
+ 
     <body>
-        <nav>
-            <div class="nav-wrapper orange accent-2">
-                <a class="brand-logo center" ng-click="homeFun()"><img id="logo" src="images/simpl-logo.png"></a>
-            </div>
-        </nav>
-        <ng-view></ng-view>
-    </body>
+
+      <div id="header" class="home">
+        <img id="logo" src="images/simpl-logo.png" />
+      </div>
+      <ng-view></ng-view>
+
+  </body>
+
 </html>
 
 
- 
+

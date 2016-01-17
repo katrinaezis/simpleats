@@ -5,6 +5,7 @@
 }
 
 #titleTimer {
+  color: #333;
     padding-top: 4px;
 	font-size: 15px;
 }
@@ -13,14 +14,19 @@
 	display: block;
 }
 
-
-
 /*#content > img {
 	max-height: 300px;
 	float: right;
 	margin-top: 10%;
 }
 */
+h4 {
+	color: #FF6E40;
+}
+
+h1, h2, h3, h4 {
+	font-family: 'Raleway', sans-serif;
+}
 
 #content > h4 {
 	margin-top: 10%;
@@ -47,7 +53,8 @@
 }
 
 #logo {
-	height: 60px;
+	max-width: 300px;
+	
 }
 
 .redstyle {
@@ -65,8 +72,9 @@
 
 
 body {
+	
 	color: #675d53;
-	font-family: Arial,Helvetica,sans-serif;
+	font-family: lato, PT Sans, Myriad Pro, Arial,Helvetica,sans-serif;
 }
 
 .items {
@@ -139,7 +147,11 @@ body {
 
 .checkoutButtons {
 	text-align: right;
-	padding: 0px 20px 40px 20px;
+	padding: 20px 20px 40px 20px;
+}
+
+.checkoutButtons button {
+	margin-left: 20px;
 }
 
 .addToOrderButton {
@@ -176,19 +188,8 @@ body {
 	font-size: 3em;
 }
 
-@media screen and (max-width: 550px) {
-	
-	.addToOrderButton button span{
-		display: none;
-	}
-	.addToOrderButton button:after{
-		content: 'Add';
-	}
-	
-}
-
 #fullOrder {
-    width: 450px;
+    width: 470px;
     display: inline-block;
     padding: 0;
     margin: 20px;
@@ -196,12 +197,28 @@ body {
     margin-top: 10px;
         box-shadow: 0 1px 4px 1px rgba(0,0,0,0.05); }
 
+.left-col #fullOrder {
+  margin-left: 0; }
+
+.right-col #fullOrder {
+  margin-right: 0; }
+
+.column.right-col {
+  text-align: right; }
+
+.column.right-col #fullOrder{
+  text-align: left; }
+
+.column {
+  position: relative;
+  left: -4px; }
+
     .order-item {
         width: 32%;
-            font-size: 13px;
+            font-size: 14px;
         display:inline-block;
 /*        border-right: 1px solid #f4f4f4;*/
-min-height: 100px;
+min-height: 95px;
 vertical-align: top;
         padding: 12px; }
 
@@ -213,7 +230,8 @@ vertical-align: top;
         .column {
             vertical-align: top;
             text-align: left;
-            max-width: 480px;
+          max-width: 480px;
+          width: 480px;
             display: inline-block;
         }
 
@@ -223,6 +241,9 @@ vertical-align: top;
         #titleTimer {
             height: 30px; }
             #timer {
+              font-weight: normal; }
+
+            #timer strong{
                 font-weight: bold; }
 
 
@@ -241,3 +262,125 @@ vertical-align: top;
     background-color: rgba(255,115,71, 0.4);
   }
 }
+
+.wrapper {
+    max-width: 970px;
+    margin: auto; }
+    
+#header {
+	text-align: center;
+	background-color: #FF5722;
+  padding-top: 12px;
+  padding-bottom: 14px;
+  /*border-top: 6px solid #472c75;*/ 
+  border-bottom: 1px dashed #472c75; }
+
+#toolbar {
+	font-size: 1.5em;
+	color: white;
+	background-color: #FF6E40;
+	padding: 8px;
+	margin-bottom: 12px;
+}
+
+.brick {
+	color: white;
+	position: relative;
+	background-size: cover;
+}
+
+.brick a {
+	display: block;
+	color: white;
+    width: 100%;
+    height: 100%;
+}
+
+
+@media screen and (max-width: 550px) {
+	 #header {
+	  padding-top: 8px;
+  		padding-bottom: 11px;
+	}
+  
+	#logo {
+		max-height: 70px;
+	}
+
+	.addToOrderButton button span{
+		display: none;
+	}
+	.addToOrderButton button:after{
+		content: 'Add';
+	}
+	
+}
+
+
+.brickLabel {
+	display: block;
+	position: absolute;
+    left: 40px;
+    bottom: 30px;
+    font-size: 2em;
+    font-variant: small-caps;
+    /*text-transform: uppercase;*/
+    text-shadow: 0 0 2px rgba(0,0,0,.6);
+    font-family: 'Raleway', sans-serif;
+}
+#restaurant1 {
+	width: 250px;
+	height: 200px;
+	background-image: url(../images/restruantImg/restaurant.jpg); 
+}
+
+#restaurant2 {
+	width: 250px;
+	height: 200px;
+	background-image: url(../images/restruantImg/restruant2.jpg);
+}
+
+#restaurant3 {
+	width: 250px;
+	height: 200px;
+	background-image: url(../images/restruantImg/restruant3.jpg);
+}
+
+#restaurant4 {
+	width: 250px;
+	height: 200px;
+	background-image: url(../images/restruantImg/restruant4.jpg);
+}
+
+#restaurant5 {
+	width: 250px;
+	height: 200px;
+	background-image: url(../images/restruantImg/restruant4.jpg);
+}
+
+
+
+
+  .close {
+      cursor: pointer;
+      margin-left: 12px; }
+
+      .close:hover {
+          color: #f05423;
+      cursor: pointer;
+      margin-left: 12px; }
+
+     
+
+      #search {
+          border-radius: 20px;
+          height: 30px;
+          border: 1px solid #ddd;
+          padding-left: 10px;
+          float: right;
+          width: 250px;
+      }
+      #search:focus {
+          box-shadow: 0 1px 0 0 #aaa!important;
+/*          box-shadow: none!important;*/
+          border-bottom: 1px solid #f5f5f5!important; }
