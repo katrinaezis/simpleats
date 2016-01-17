@@ -51,6 +51,16 @@ body {
 	max-width: 60px;
 }
 
+.itemHeader {
+    padding-bottom: 10px;
+}
+
+.itemHeader:after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
 .itemDetails {
 	float: left;
 	padding: 0 10px 0 20px;
@@ -62,8 +72,10 @@ body {
 	padding-bottom: .75em;
 }
 
+
 .itemTitle {
-	font-size: 1.25em;
+	float: left;
+	font-size: 2em;
 	color: #ab262f;	
 }
 
@@ -75,6 +87,10 @@ body {
 .checkoutButtons {
 	text-align: right;
 	padding: 0px 20px 40px 20px;
+}
+
+.addToOrderButton {
+	text-align: right;
 }
 
 .mainBtn {
