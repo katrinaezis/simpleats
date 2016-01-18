@@ -45,10 +45,6 @@ body.dashboard .imgLogo {
 	color: #FF5722;
 }
 
-#largeRow:hover {
-	border-bottom: 1px solid hsla(30, 78%, 65%, 0.79);
-}
-
 #cedarsLogo {
 	text-align: center;
 }
@@ -133,7 +129,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 body {
-	
+	overflow: hidden;
 	color: #675d53;
 	font-family: lato, PT Sans, Myriad Pro, Arial,Helvetica,sans-serif;
 }

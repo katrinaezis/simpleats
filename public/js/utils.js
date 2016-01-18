@@ -372,9 +372,9 @@ function return_it(x) {
 function print_time(time) {
     var time = new Date(time);
 
-    var hour    = time.getHours().toString();
-    var minutes = time.getMinutes().toString();
-    if (hour.length == 1) hour = "0" + hour;
+    var hour    = (time.getHours() || "6").toString();
+    var minutes = (time.getMinutes() || "30").toString();
+//    if (hour.length == 1) hour = "0" + hour;
     if (minutes.length == 1) minutes = "0" + minutes;
             
     return hour + ":" + minutes; }
