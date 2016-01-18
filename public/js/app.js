@@ -307,10 +307,10 @@ var SEModule = angular.module('se', ['ngRoute',
 
             $scope.order.name = "David Karn"
             $scope.order.tickets = $scope.order.menuItems;
-            $scope.order.time_due = new Date() - (-1000 * 60 * 18);
+            $scope.order.time_due = new Date() - (-1000 * 60 * 22);
             order.time_due = new Date() - (-1000 * 60 * 18);
             console.log($scope.order);
-            connection.emit('new_order', order); //$scope.order);
+            connection.emit('new_order', $scope.order); //$scope.order);
             console.log('tset');
             $location.path('/thankyou')}; })
         
