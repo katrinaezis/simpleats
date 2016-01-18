@@ -16,15 +16,15 @@
 			<div class="col s3">
 				${{menuitem.price.toFixed(2)}}
 			</div>
-			<div class="col s3 left-align">
+			<div class="col s2 left-align">
 				<div  class="itemQuantity" ng-if="orderItemQuantity(menuitem.title) > 0">{{ orderItemQuantity(menuitem.title) }}</div><span ng-click="add_to_order(menuitem)"><i class="fa fa-plus-square-o text-orange"></i></div>
 			</div>
 		</div>
 
-		
-		<div class="checkoutButtons">
-		    <div>Total items: {{ order_in.menuItems.length }}</div>
-			<button class="mainBtn" ng-click="checkout()">Checkout</button>
-		</div>
-	</div>
+		  <div id="checkoutButtons">
+		    <div>Total items: <div class="itemQuantity">{{ order_in.menuItems.length }}</div> </div>
+		    <button class="btn waves-effect waves-light deep-orange white-text" ng-click="checkout()">Checkout
+		    </button>
+		  </div>
+
 </div>

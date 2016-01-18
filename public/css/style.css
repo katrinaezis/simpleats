@@ -4,6 +4,19 @@
     box-sizing: border-box;
 }
 
+.imgLogo {
+	display: inline-block;
+	width: 200px;
+	height: 105px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-image: url(../images/logo.png);
+}
+
+body.dashboard .imgLogo {
+	background-image: url(../images/logo-white.png);
+}
+
 #restruantLogo {
 	/*background-image: url(../images/Cedars-logo.png);
 	background-size: contain;
@@ -317,6 +330,7 @@ vertical-align: top;
 .wrapper {
     max-width: 970px;
     margin: auto; }
+   
     
 #header {
 	text-align: center;
@@ -324,6 +338,10 @@ vertical-align: top;
   padding-top: 12px;
   padding-bottom: 14px;
   /*border-top: 6px solid #472c75;*/ 
+}
+
+body.dashboard #header {
+	background-color: white;
 }
 
 #toolbar {
@@ -364,6 +382,11 @@ vertical-align: top;
 	  padding-top: 8px;
   		padding-bottom: 11px;
 	}
+  
+    .imgLogo {
+    	width: 150px;
+    	height: 70px;
+    }
   
 	#logo {
 		max-height: 70px;
