@@ -103,6 +103,8 @@ var SEModule = angular.module('se', ['ngRoute',
 
 
     .controller('DashboardController', function($scope, Socket, $location) {
+    	$("body").addClass("dashboard");
+    	
         var connection = Socket.connect(function(x) { console.log('connected', x); });
         var count      = 5;
 
@@ -325,7 +327,9 @@ var SEModule = angular.module('se', ['ngRoute',
     })
 
         .controller('DemoController', function($scope) {
+        	
             })
+            
     .controller('ThankyouController', function($scope, Order) {
     	scroll_top();
         $scope.order_in = Order.get();
