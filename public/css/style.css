@@ -129,7 +129,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 body {
-	overflow: hidden;
+	overflow-x: hidden;
 	color: #675d53;
 	font-family: lato, PT Sans, Myriad Pro, Arial,Helvetica,sans-serif;
 }
